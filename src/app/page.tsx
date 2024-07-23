@@ -1,7 +1,142 @@
 import "./globals.css"
 
-export default function Home() {
+import React from 'react';
+
+const HomePage: React.FC = () => {
   return (
-    <div>hi</div>
+    <div className="font-sans">
+      {/* Hero Section */}
+      <section className="relative bg-gray-200 h-screen">
+        <img
+          src="/path/to/your/hero-image.jpg"
+          alt="Hero"
+          className="absolute inset-0 w-full h-full object-cover opacity-50"
+        />
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center">
+          <h1 className="text-4xl font-bold text-white">Empowering Dreams, Transforming Lives</h1>
+          <div className="mt-4">
+            <button className="bg-blue-500 text-white px-4 py-2 rounded mr-2">What we do</button>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded">Play Video</button>
+          </div>
+          <p className="mt-4 text-white">Biju Cherian Scholarship (BCS) program</p>
+        </div>
+      </section>
+
+      {/* Statistics Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto text-center">
+          <div className="flex justify-around">
+            <div>
+              <h2 className="text-3xl font-bold">20M</h2>
+              <p>Number of Supporters</p>
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold">15K+</h2>
+              <p>Volunteers Worldwide</p>
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold">68K+</h2>
+              <p>We've Helped Raise</p>
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold">10M+</h2>
+              <p>Projects Funded</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Events Section */}
+      <section className="py-12 bg-gray-100">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">Our Events</h2>
+          <div className="flex justify-center">
+            <div className="bg-white shadow-md rounded-lg p-6 m-4 w-64">
+              <p className="text-blue-500 font-semibold">13 APR</p>
+              <h3 className="text-xl font-bold">A day with our wonderful children</h3>
+            </div>
+            <div className="bg-white shadow-md rounded-lg p-6 m-4 w-64">
+              <p className="text-blue-500 font-semibold">25 APR</p>
+              <h3 className="text-xl font-bold">Seminar: Caring for children with autism</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto text-center">
+          <div className="flex justify-around">
+            <div className="w-1/3 p-4">
+              <div className="bg-gray-200 p-16">
+                <p className="text-gray-500">Conversation Image</p>
+              </div>
+              <h3 className="text-xl font-bold mt-4">Conversation</h3>
+              <p>We Analyse Your Website's Structure, Internal Architecture & Other Key</p>
+            </div>
+            <div className="w-1/3 p-4">
+              <div className="bg-gray-200 p-16">
+                <p className="text-gray-500">Technical Capabilities Image</p>
+              </div>
+              <h3 className="text-xl font-bold mt-4">Technical Capabilities</h3>
+              <p>We Are Well Known Within The Industry For Our Technical Capabilities</p>
+            </div>
+            <div className="w-1/3 p-4">
+              <div className="bg-gray-200 p-16">
+                <p className="text-gray-500">Gallery Image</p>
+              </div>
+              <h3 className="text-xl font-bold mt-4">Gallery</h3>
+              <p>4517 Washington Ave. Manchester Kentucky 39495</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Discover Section */}
+      <section className="py-12 bg-gray-100">
+        <div className="container mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-8">Discover the Magic of Locally Sourced Treasures!</h2>
+          <button className="bg-blue-500 text-white px-6 py-3 rounded-lg">Explore</button>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section className="py-12 bg-white">
+        <div className="container mx-auto text-center">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="bg-gray-200 p-16">
+              <p className="text-gray-500">Image 1</p>
+            </div>
+            <div className="bg-gray-200 p-16">
+              <p className="text-gray-500">Image 2</p>
+            </div>
+            <div className="bg-gray-200 p-16">
+              <p className="text-gray-500">Image 3</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="py-12 bg-gray-800 text-white">
+        <div className="container mx-auto text-center">
+          <div className="flex justify-around">
+            <a href="#" className="text-gray-400">Contact us</a>
+            <a href="#" className="text-gray-400">About us</a>
+            <a href="#" className="text-gray-400">Chapters</a>
+            <a href="#" className="text-gray-400">Eye magazine</a>
+          </div>
+          <div className="mt-8">
+            <a href="#" className="text-gray-400 mx-2">Facebook</a>
+            <a href="#" className="text-gray-400 mx-2">Instagram</a>
+            <a href="#" className="text-gray-400 mx-2">YouTube</a>
+            <a href="#" className="text-gray-400 mx-2">LinkedIn</a>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
-}
+};
+
+export default HomePage;
+

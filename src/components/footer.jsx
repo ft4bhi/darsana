@@ -19,14 +19,18 @@ const Footer = memo(() => {
           <span className="relative inline-block min-w-[77px] cursor-pointer">
             <Link href="/contact-us-final">Contact us</Link>
           </span>
-          <span className="relative inline-block min-w-[64px]">About us</span>
+          <span className="relative inline-block min-w-[64px]">
+            <Link href="../aboutus">About Us</Link>
+          </span>
           <span className="relative inline-block min-w-[69px] cursor-pointer">
             <Link href="/initiatives">Initiatives</Link>
           </span>
           <span className="relative inline-block min-w-[65px] cursor-pointer">
             <Link href="/chapters">Chapters</Link>
           </span>
-          <span className="relative inline-block min-w-[99px]">Eye magazine</span>
+          <span className="relative inline-block min-w-[99px]">
+            Eye magazine
+          </span>
         </div>
       </div>
       <div className="w-[174px] flex flex-col items-start justify-start pt-2.5 px-0 pb-0 box-border">
