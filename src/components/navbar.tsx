@@ -1,28 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 
-const NavLink = ({ href, children, className, isActive, onClick }) => (
+interface NavLinkProps {
+  href: string;
+  children: ReactNode;
+  className: string;
+  isActive?: boolean;
+  onClick: () => void;
+}
+
+const NavLink = ({ href, children, className, isActive, onClick }: NavLinkProps) => (
   <Link
     href={href}
-    className={`${className} ${
-      isActive
-        ? "text-blue-700 dark:text-blue-500"
-        : "text-gray-900 dark:text-white"
-    }`}
+    className={`${className} ${isActive
+      ? "text-blue-700 dark:text-blue-500"
+      : "text-gray-900 dark:text-white"
+      }`}
     onClick={onClick}
   >
     {children}
   </Link>
 );
 
-const Dropdown = ({ items, handleLinkClick }) => (
+interface DropdownProps {
+  items: string[];
+  handleLinkClick: (href: string) => void;
+}
+
+const Dropdown = ({ items, handleLinkClick }: DropdownProps) => (
   <ul className="absolute z-10 hidden group-hover:block hover:block bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
     {items.map((item, index) => (
       <li key={index}>
         <NavLink
-          href={`/${item.replace(/\s+/g, "-").toLowerCase()}`}
+          href={`/${item.replace(/\s+/g, "-")}`}
           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           onClick={() =>
             handleLinkClick(`/${item.replace(/\s+/g, "-").toLowerCase()}`)
@@ -38,18 +50,18 @@ const Dropdown = ({ items, handleLinkClick }) => (
 const Navbar = () => {
   const [activeLink, setActiveLink] = useState("/");
 
-  const handleLinkClick = (href) => {
+  const handleLinkClick = (href: string) => {
     setActiveLink(href);
   };
 
   const keyInitiatives = [
-    "Prabakaran Memorial Best Project Award",
-    "Skill Development Program",
+    " prabkaranmemorail",
+    "skill development",
     "IGNITE",
-    "BRIDGE",
-    "Biju Cherian Endowment Talk",
-    "House Constructions",
-    "Course Explorer",
+    "bridge",
+    "BijuCheriyanEndowment",
+    "HouseConstruction",
+    "CourseExplorer",
   ];
 
   const initiatives = [
