@@ -1,12 +1,12 @@
 // app/product/layout.tsx
 import HeaderMain from "@/components/product/HeaderMain";
 import "./globals.css";
-import HeaderTop from "@/components/product/HeaderTop";
-import NavElement from "@/components/product/NavElement";
+
 import Hero from "@/components/product/Hero";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import NewProducts from "@/components/product/NewProduct";
 
 export default function ProductLayout({
   children,
@@ -17,8 +17,9 @@ export default function ProductLayout({
     <>
       {/* <HeaderTop /> */}
       <HeaderMain />
-      {/* <NavElement /> */}
+
       <Hero />
+      <NewProducts />
       {children}
     </>
   );
