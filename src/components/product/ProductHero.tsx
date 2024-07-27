@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import Slide from './Slides';
 
 
-const Hero = () => {
+const ProductHero = () => {
     var settings = {
         dots: true,
         infinite: true,
@@ -51,4 +51,4 @@ const Hero = () => {
     );
 }
 
-export default Hero;
+export default ProductHero;

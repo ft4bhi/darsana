@@ -1,4 +1,5 @@
 import Image from "next/image";
+import scholarship_program_image_program from "@/assets/program/scholarship_program_image_program.png";
 
 const BijuCherianEndowmentTalkKe = () => {
   return (
@@ -9,7 +10,7 @@ const BijuCherianEndowmentTalkKe = () => {
         </h1>
         <Image
           className="mx-auto mb-8 rounded-lg shadow-lg"
-          src="/Biju Cherian Endowment Talk key invitaivties hero image.png"
+          src={scholarship_program_image_program.src}
           alt="Biju Cherian Endowment Talk"
           width={967}
           height={611}

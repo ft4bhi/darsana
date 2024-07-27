@@ -2,6 +2,9 @@
 import Link from "next/link";
 import { useState, ReactNode, useRef, useEffect } from "react";
 import Image from "next/image";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import darsanaLogo from "@/assets/home/darsanaLogo.png";
 
 interface NavLinkProps {
@@ -32,10 +35,10 @@ const Dropdown = ({ items, handleLinkClick }: DropdownProps) => (
     {items.map((item, index) => (
       <li key={index}>
         <NavLink
-          href={`/${item.replace(/\s+/g, "-").toLowerCase()}`}
+          href={`/${item.replace(/\s+/g, "").toLowerCase()}`}
           className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
           onClick={() =>
-            handleLinkClick(`/${item.replace(/\s+/g, "-").toLowerCase()}`)
+            handleLinkClick(`/${item.replace(/\s+/g, "").toLowerCase()}`)
           }
         >
           {item}

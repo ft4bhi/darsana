@@ -1,25 +1,29 @@
 import "../../globals.css"
 import React from 'react';
+import bijuschreiyanhomeheroimage from '../../../assets/home/bijuschreiyanhomeheroimage.png'
+import Hero from "@/components/homepage/Hero"
 
 const HomePage: React.FC = () => {
     return (
         <div className="font-sans">
-            {/* Hero Section */}
-            <section className="relative bg-gray-200 h-screen">
+            {/* hero section */}
+            <Hero />
+            {/* <section className="relative bg-gray-200 h-screen">
                 <img
-                    src="/path/to/your/hero-image.jpg"
+                    src={bijuschreiyanhomeheroimage.src}
                     alt="Hero"
-                    className="absolute inset-0 w-full h-full object-cover opacity-50"
+                    className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
                     <h1 className="text-2xl md:text-4xl font-bold text-white mb-6">Empowering Dreams, Transforming Lives</h1>
-                    <div className="mt-4 flex flex-col sm:flex-row">
+                    <div className="mt-4 flex flex-col sm:flex-row absolute bottom-0 left-0 mb-4 ml-4">
                         <button className="bg-blue-500 text-white px-4 py-2 rounded mb-4 sm:mb-0 sm:mr-4">What we do</button>
                         <button className="bg-blue-500 text-white px-4 py-2 rounded">Play Video</button>
                     </div>
                     <p className="mt-6 text-white">Biju Cherian Scholarship (BCS) program</p>
                 </div>
-            </section>
+            </section> */}
+
 
             {/* Statistics Section */}
             <section className="py-16 bg-white">
@@ -120,7 +124,7 @@ const HomePage: React.FC = () => {
             <footer className="py-16 bg-gray-800 text-white">
                 <div className="container mx-auto text-center px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                        <a href="#" className="text-gray-400">Contact us</a>
+                        <a href="/contactUs" className="text-gray-400">Contact us</a>
                         <a href="#" className="text-gray-400">About us</a>
                         <a href="#" className="text-gray-400">Chapters</a>
                         <a href="#" className="text-gray-400">Eye magazine</a>

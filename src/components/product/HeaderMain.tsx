@@ -4,10 +4,10 @@ import React from 'react';
 import { BsFacebook, BsTwitter, BsLinkedin, BsSearch } from "react-icons/bs";
 import { IconType } from 'react-icons';
 
-interface SocialIconProps {
-    Icon: IconType;
-    url: string;
-}
+// interface SocialIconProps {
+//     Icon: IconType;
+//     url: string;
+// }
 
 // const SocialIcon: React.FC<SocialIconProps> = ({ Icon, url }) => (
 //     <div
