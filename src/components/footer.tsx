@@ -9,7 +9,7 @@ const Footer = memo(() => {
         <div className="w-[138.5px] h-11 relative z-[1] flex items-center justify-center">
           <img
             className="w-full h-full z-[1] object-contain absolute left-[4px] top-[0px] [transform:scale(1.364)]"
-            alt=""
+            alt="Darsana Logo"
             src="/divlogo1@2x.png"
           />
         </div>
@@ -38,26 +38,26 @@ const Footer = memo(() => {
           <div className="flex flex-col items-start justify-start pt-px px-0 pb-0">
             <img
               className="w-[13.1px] h-[22px] relative z-[1]"
-              alt=""
+              alt="Social Icon"
               src="/social.svg"
             />
           </div>
           <div className="flex flex-col items-start justify-start pt-px px-0 pb-0">
             <img
               className="w-6 h-[22px] relative object-cover z-[1]"
-              alt=""
+              alt="Social Icon"
               src="/social1@2x.png"
             />
           </div>
           <img
             className="self-stretch w-[33.8px] relative max-h-full overflow-hidden shrink-0 min-h-[24px] z-[1]"
-            alt=""
+            alt="Social Icon"
             src="/social11.svg"
           />
           <div className="flex flex-col items-start justify-start pt-px px-0 pb-0">
             <img
               className="w-[25.1px] h-[22px] relative object-cover z-[1]"
-              alt=""
+              alt="Social Icon"
               src="/social2@2x.png"
             />
           </div>
