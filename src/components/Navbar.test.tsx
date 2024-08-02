@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Navbar from '../path/to/Navbar'; // Adjust the import based on your file structure
+import Navbar from './navbar'; // Adjust the import based on your file structure
 
 describe('Navbar Component', () => {
   test('renders all main navigation links', () => {

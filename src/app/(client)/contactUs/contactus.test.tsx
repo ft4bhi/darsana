@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import ContactUs from './ContactUs';
+import ContactUs from  "./page"
 
 // Mock the console.log function
 console.log = jest.fn();

@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import NavElement from './NavElement';
-import { server } from './mocks/server'; // Adjust the path if needed
+// import { server } from './mocks/server'; // Adjust the path if needed
 
 describe('NavElement', () => {
   test('renders navigation links correctly', () => {

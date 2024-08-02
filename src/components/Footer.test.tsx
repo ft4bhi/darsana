@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Footer from '../path/to/Footer'; // Adjust the import based on your file structure
+import Footer from './footer'; // Adjust the import based on your file structure
 
 describe('Footer Component', () => {
   test('renders logo', () => {
