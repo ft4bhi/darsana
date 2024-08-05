@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { db, ContactTable } from '@/lib/drizzle';
+import { db, ContactTable } from '@/lib/contactUsSchema';
 
 export async function POST(request: Request) {
     try {
