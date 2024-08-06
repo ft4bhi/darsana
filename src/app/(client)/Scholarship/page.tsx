@@ -2,7 +2,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Navbar from '@/components/scholarship/client/scholarshipnavbar';
-
+import ScholarshipHeroImage from '@/components/scholarship/client/scholarshipheroimage';
+import ScholarshipApplyNowButton from '@/components/scholarship/client/scholarshipapplybutton';
 const ScholarshipAboutProgram: NextPage = () => {
   return (
     <>
@@ -15,7 +16,7 @@ const ScholarshipAboutProgram: NextPage = () => {
         <div className="absolute top-[41.875rem] left-[5.875rem]">
           <Navbar />
         </div>
-        
+        <ScholarshipHeroImage />
         <div className="absolute top-[49.875rem] left-[5.063rem] tracking-[0.16px] leading-[2.16rem] flex items-center w-[81.438rem] h-[12.938rem]">
           Biju Cheriyan studied Instrumentation and Control Engineering at the NSS College of Engineering in Palakkad from 1987 to 1991. Biju, who had been active in the progressive left movement since his school days, significantly contributed to shaping the campus ethos at the NSSCE. An excellent student, he was also a committed supporter of students' rights, an ardent leftist, a practical leader, a tenacious fighter, a devoted friend, and most importantly, a stunning human being. In 1997, he passed away far too soon. To preserve the memory of Biju Cheriyan and the principles he upheld, his friends formed Darsana, a group of like-minded former NSSCE students.
         </div>
@@ -56,8 +57,9 @@ const ScholarshipAboutProgram: NextPage = () => {
             <p className="m-0"> </p>
           </span>
         </div>
-        
-        <img className="absolute top-[12.375rem] left-[19.125rem] w-[45rem] h-[31.25rem] object-cover" alt="Scholarship hero image" src="/scholarship-hero-image.png" />
+        <div className="absolute top-[141rem] left-[5.063rem] w-[81.438rem]">
+          <ScholarshipApplyNowButton />
+        </div>
       </div>
     </>
   );
