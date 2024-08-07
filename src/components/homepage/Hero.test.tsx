@@ -3,7 +3,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import ProductHero from './ProductHero';
-import Slide from './Slides';
+import Slide from './heroimage';
 
 // Mock the Slide component
 jest.mock('./Slides', () => ({
