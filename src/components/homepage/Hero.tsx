@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import Slider from 'react-slick';
-import Slide from './Slides';
+import Slide from './heroimage';
 
 // Import images
 import bijuschreiyanhomeheroimage from '@/assets/home/bijuschreiyanhomeheroimage.png';
