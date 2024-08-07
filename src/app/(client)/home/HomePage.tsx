@@ -3,6 +3,7 @@ import React from 'react';
 import bijuschreiyanhomeheroimage from '../../../assets/home/bijuschreiyanhomeheroimage.png'
 import Hero from "@/components/homepage/Hero"
 
+
 const HomePage: React.FC = () => {
     return (
         <div className="font-sans">
