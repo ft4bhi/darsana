@@ -1,37 +1,28 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
-import TopBar from "@/components/admin/TopBar";
-import DashboardContent from "@/components/admin/DashboardContent";
-import Sidebar from "@/components/admin/SideBar";
+import React, { ReactNode } from 'react';
+import TopBar from '@/components/admin/TopBar'; // Adjust the import path as needed
+import Sidebar from '@/components/admin/SideBar'; // Adjust the import path as needed
 
-// Import necessary components if needed
-// e.g., import AdminNavbar from "@/components/adminNavbar";
+interface LayoutProps {
+  children: ReactNode;
+}
 
-const inter = Inter({ subsets: ["latin"] });
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  return (
+    <div className="flex flex-col h-screen">
+      {/* TopBar */}
+      <TopBar />
 
-export const metadata: Metadata = {
-  title: "Admin Panel",
-  description: "Admin panel layout",
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <Sidebar />
+
+        {/* Main content area */}
+        <main className="flex-1 p-0 overflow-auto">
+          {children}
+        </main>
+      </div>
+    </div>
+  );
 };
 
-export default function AdminLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-
-        <div className="flex">
-          <Sidebar />
-          <div className="flex-1">
-            <TopBar />
-
-          </div>
-        </div>
-      </body>
-    </html>
-  );
-}
+export default Layout;
