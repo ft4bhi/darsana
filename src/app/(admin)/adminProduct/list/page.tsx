@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+
 import {
     Table,
     TableHead,
@@ -63,7 +64,8 @@ const ProductTable = () => {
     const router = useRouter();
 
     const handleRowClick = (productId: number) => {
-        router.push(`/adminProduct/productList/${productId}`);
+        router.push(`/adminProduct/productMainContent/${productId}`);
+
     };
 
     return (

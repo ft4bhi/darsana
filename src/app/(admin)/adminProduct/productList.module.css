@@ -1,0 +1,135 @@
+.productContainer {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.productInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.productTitle {
+    display: flex;
+    flex-direction: column;
+}
+
+.productTitle h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.productDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.productDetail {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.productDetail span {
+    font-weight: bold;
+}
+
+.productImage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.productImage img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.productThumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.productThumbnails img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.productDescription {
+    margin-bottom: 20px;
+}
+
+.productDescription h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.productDescription p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.productDetailsTable {
+    margin-bottom: 20px;
+}
+
+.productDetailsTable table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.productDetailsTable th,
+.productDetailsTable td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.productSupplier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.supplierInfo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.supplierLogo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.supplierInfo div {
+    display: flex;
+    flex-direction: column;
+}
+
+.supplierInfo h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.supplierInfo p {
+    margin: 0;
+    font-size: 14px;
+}
