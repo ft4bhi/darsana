@@ -1,143 +1,128 @@
-"use client"
-import { useState } from 'react';
-import Image from 'next/image';
-import Head from 'next/head';
-import "./globals.css";
-import about_us_heroImage from '../../../assets/aboutus/about_us_heroimage.png';
-// import storyImage from '../../../assets/aboutus/story_image.png';
-// import howWeDoImage from '../../../assets/aboutus/howwedo_image.png';
-// import objectivesImage from '../../../assets/aboutus/objectives_image.png';
-// import globalInnovationsImage from '../../../assets/aboutus/global_innovations_image.png';
-// import chaptersImage from '../../../assets/aboutus/chapters_image.png';
-// import leadershipImage from '../../../assets/aboutus/leadership_image.png';
-// import timelineImage from '../../../assets/aboutus/timeline_image.png';
+"use client";
+import React, { useState } from 'react';
+import DarsanaEngineers from "../../../assets/aboutus/DarsanaEngineers.png";
+// import Generalinformation from "../../../assets/aboutus/Generalinformation.png";
+// import aboutimg2 from "../../../assets/aboutus/aboutimg2.png";
+import PresentLeadership from './PresentLeadership/leaders';
+import Timeline from './TimeLine/timeline';
+type TabKey = 'OUR STORY' | 'WHAT WE DO' | 'OBJECTIVES' | 'GENERAL INFORMATION' | 'CHAPTERS' | 'PRESENT LEADERSHIP' | 'TIMELINE';
 
-const AboutUs: React.FC = () => {
-  const [selectedSection, setSelectedSection] = useState('Our Story');
+const DarsanaAboutPage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<TabKey>('OUR STORY');
 
-  const renderContent = () => {
-    switch (selectedSection) {
-      case 'Our Story':
-        return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="Our Story Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>
-                Darsana was established in 2007 as a charitable society with a registered office in Palakkad, Kerala. The idea for such an organization arose during a meeting of a few progressive-thinking students from the 1991 graduating class of NSS College of Engineering, Palakkad (NSSCE). The meeting was called to consider establishing an endowment for NSS College of Engineering Palakkad students in honor of their batchmate, the late Comrade Biju Cheriyan. This sparked the idea of bringing together all like-minded students from the 1960s to the millennium batches. Darsana was inaugurated on August 5, 2007, by the then honorable Education Minister of Kerala M. A. Baby in a function organized at the NSSCE campus. It was presided over by the college principal. The then member of parliament for Palakkad constituency, N. N. Krishnadas also attended.
-              </p>
-            </div>
-          </div>
-        );
-      case 'How We Do':
-        return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="How We Do Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>We have undertaken many socially relevant initiatives in education, waste management, sustainable construction methods, e-governance at panchayat level and many more in addition to various charity initiatives like sponsoring economically weak students etc. We are the organisers of Biju Cherian Scholarship which finacially supports more than 40 engineering students with an annual budget outlay of Rs 5 lakhs.
-                We are the proud organizers of IGNITE, the biggest innovatiion contest held for college students in Kerala. We are also very active in designing and constructing alternate and sustainable houses. Darsana so far built 10 houses for the needy.</p>
-            </div>
-          </div>
-        );
-      case 'Objectives':
-        return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="Objectives Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>Under the banner of Darsana we have undertaken many socially relevant initiatives in education, waste management, sustainable construction methods,</p>
-            </div>
-          </div>
-        );
-      case 'Global Innovations':
-        return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="Global Innovations Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>Darsana is a professionally managed organization led by a 21-member Executive Committee. The committee members are from all over the globe. The Committee meets every two weeks via digital platforms to plan upcoming activities. We take pride in being among the first organizations to use digital platforms to run an organization effectively and efficiently.</p>
-            </div>
-          </div>
-        );
-      case 'Chapters':
-        return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="Chapters Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>As its members were widely dispersed across the globe, Darsana recognized early on that true growth could only be achieved through a strong network of independent chapters in various parts of the globe. Darsana's strength lies in its chapters. The programs initiated and carried out by different chapters have produced commendable results. Through chapters, Darsana's dream of becoming an umbrella organization for over 3000 former NSSCE students from the early 1960s to the present is being realized.
+  const tabs: TabKey[] = ['OUR STORY', 'WHAT WE DO', 'OBJECTIVES', 'GENERAL INFORMATION', 'CHAPTERS', 'PRESENT LEADERSHIP', 'TIMELINE'];
 
-              </p>
-            </div>
-          </div>
-        );
-      case 'Primary Leadership':
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'OUR STORY':
         return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="Primary Leadership Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>.</p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <img src={DarsanaEngineers.src} alt="Darsana Engineers" className="w-full h-auto object-cover" />
+            <p className="text-lg">
+            Darsana was established in 2007 as a charitable society with a registered office in Palakkad, Kerala. The idea for such an organization arose during a meeting of a few progressive-thinking students from the 1991 graduating class of NSS College of Engineering, Palakkad (NSSCE). The meeting was called to consider establishing an endowment for NSS College of Engineering Palakkad students in honor of their batchmate, the late Comrade Biju Cheriyan. This sparked the idea of bringing together all like-minded students from the 1960s to the millennium batches. Darsana was inaugurated on August 5, 2007, by the then honorable Education Minister of Kerala M. A. Baby in a function organized at the NSSCE campus. It was presided over by the college principal. The then member of parliament for Palakkad constituency, N. N. Krishnadas also attended. 
+            </p>
           </div>
         );
-      case 'Timeline':
+      case 'WHAT WE DO':
         return (
-          <div className="nameCard">
-            <div className="imageWrapper">
-              <Image src={about_us_heroImage} alt="Timeline Image" layout="intrinsic" width={150} height={150} />
-            </div>
-            <div className="textWrapper">
-              <p>Content for Timeline.</p>
-            </div>
+          <div className=" grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <p className="text-lg">
+            We have undertaken many socially relevant initiatives in education, waste management, sustainable construction methods, e-governance at panchayat level and many more in addition to various charity initiatives like sponsoring economically weak students etc. We are the organisers of Biju Cherian Scholarship which finacially supports more than 40 engineering students with an annual budget outlay of Rs 5 lakhs.
+            We are the proud organizers of IGNITE, the biggest innovatiion contest held for college students in Kerala. We are also very active in designing and constructing alternate and sustainable houses. Darsana so far built 10 houses for the needy. 
+            </p>
+            
           </div>
         );
+        case 'OBJECTIVES':
+        return (
+          <div className=" ">
+            <p className="text-lg">
+            Under the banner of Darsana we have undertaken many socially relevant initiatives in education, waste management, sustainable construction methods,            
+            </p>
+          </div>
+        );
+        case 'GENERAL INFORMATION':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <p className="text-lg">
+            Darsana is a professionally managed organization led by a 21-member Executive Committee. The committee members are from all over the globe. The Committee meets every two weeks via digital platforms to plan upcoming activities. We take pride in being among the first organizations to use digital platforms to run an organization effectively and efficiently.            
+            </p>
+            <img src={DarsanaEngineers .src} alt="Darsana building" className="w-full h-auto object-cover" />
+          </div>
+        );
+        case 'CHAPTERS':
+        return (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <p className="text-lg">
+            As its members were widely dispersed across the globe, Darsana recognized early on that true growth could only be achieved through a strong network of independent chapters in various parts of the globe. Darsana's strength lies in its chapters. The programs initiated and carried out by different chapters have produced commendable results. Through chapters, Darsana's dream of becoming an umbrella organization for over 3000 former NSSCE students from the early 1960s to the present is being realized.  
+            </p>
+            <img src={DarsanaEngineers.src} alt="Darsana building" className="w-full h-auto object-cover" />
+          </div>
+        );
+      case 'PRESENT LEADERSHIP':
+        return <PresentLeadership />;
+        case 'TIMELINE':
+        return <Timeline />;
       default:
-        return null;
+        return <p className="text-sm">Content for {activeTab} tab</p>;
     }
   };
 
   return (
-    <div className="container">
-      <Head>
-        <title>About Us</title>
-        <meta name="description" content="About Us page" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="main">
-        <header className="header">
-          <h1>About Us</h1>
-          <p>
-            We are a global diaspora of more than a thousand highly experienced
-            and socially committed engineers. We work towards making a
-            difference in the life of the needy and down-trodden.
-          </p>
-        </header>
-        <div className="imageContainer">
-          <Image src={about_us_heroImage} alt="about_us_heroimage" layout="responsive" />
+    <div className="max-w-6xl mx-auto px-4 py-8">
+      
+       
+        
+      <h1 className="text-3xl font-bold text-center mb-6">ABOUT US</h1>
+      
+      <p className="text-center text-lg mb-8 max-w-3xl mx-auto">
+        We are a global diaspora of more than thousand highly experienced
+        and socially committed engineers. We work towards making a
+        difference in the life of needy and down trodden
+      </p>
+      
+      <div className="relative mb-8 flex justify-center">
+        <img
+          src={DarsanaEngineers.src}
+          alt="Group of Darsana engineers"
+          className="object-cover"
+        />
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          <div className="flex space-x-2">
+            {[1, 2, 3].map((dot) => (
+              <div key={dot} className="w-2 h-2 bg-white rounded-full"></div>
+            ))}
+          </div>
         </div>
-        <nav className="navigation">
-          <button onClick={() => setSelectedSection('Our Story')}>Our Story</button>
-          <button onClick={() => setSelectedSection('How We Do')}>How We Do</button>
-          <button onClick={() => setSelectedSection('Objectives')}>Objectives</button>
-          <button onClick={() => setSelectedSection('Global Innovations')}>Global Innovations</button>
-          <button onClick={() => setSelectedSection('Chapters')}>Chapters</button>
-          <button onClick={() => setSelectedSection('Primary Leadership')}>Primary Leadership</button>
-          <button onClick={() => setSelectedSection('Timeline')}>Timeline</button>
-        </nav>
-        <section className="details">
-          {renderContent()}
-        </section>
-      </main>
+      </div>
+      
+      <div 
+  className="h-14 flex justify-between px-2 mb-6 rounded-lg overflow-x-auto" 
+  style={{ backgroundColor: '#1187C9' }}
+>
+  {tabs.map((tab) => (
+    <button 
+      key={tab} 
+      className={`text-xs px-3 py-2 rounded`} 
+      style={{
+        backgroundColor: activeTab === tab ? '#0E5B8A' : 'transparent',
+        color: activeTab === tab ? '#FFFFFF' : '#000000'
+      }}
+      onClick={() => setActiveTab(tab)}
+    >
+      {tab}
+    </button>
+  ))}
+</div>
+      
+      <div className="mb-8 px-4">
+        {renderTabContent()}
+      </div>
     </div>
   );
 };
 
-export default AboutUs;
+export default DarsanaAboutPage;
