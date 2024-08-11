@@ -1,3 +1,4 @@
+// src\app\(client)\contactUs\page.tsx
 "use client";
 import type { NextPage } from 'next';
 import Head from 'next/head';
@@ -30,32 +31,36 @@ const ContactUsFinal: NextPage = () => {
     setSubmitStatus('loading');
     console.log('Submitting form data:', formData);
 
-    // Simulate API call
-    setTimeout(async () => {
-      try {
-        // Simulate a 50% chance of success
-        if (Math.random() < 0.5) {
-          throw new Error('Simulated API error');
-        }
+    try {
+      const response = await fetch('/api/contactus', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-        console.log('Submission successful');
-        setSubmitStatus('success');
-        setFormData({
-          firstname: '',
-          lastname: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: '',
-          privacypolicy: false
-        });
-      } catch (error) {
-        console.error('Error submitting:', error);
-        setSubmitStatus('error');
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
       }
-    }, 2000); // Simulate a 2-second delay
-  };
 
+      const result = await response.json();
+      console.log('Submission successful:', result);
+      setSubmitStatus('success');
+      setFormData({
+        firstname: '',
+        lastname: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+        privacypolicy: false
+      });
+    } catch (error) {
+      console.error('Error submitting:', error);
+      setSubmitStatus('error');
+    }
+  };
   return (
     <>
       <Head>

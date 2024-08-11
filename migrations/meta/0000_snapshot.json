@@ -1,5 +1,5 @@
 {
-  "id": "d24a0442-de62-4e46-a20a-b7368f5dd11a",
+  "id": "8bdd482d-f13e-4160-b00e-83324327a61e",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -129,8 +129,8 @@
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },
-    "public.ContactDetail_table": {
-      "name": "ContactDetail_table",
+    "public.contact_detail_table": {
+      "name": "contact_detail_table",
       "schema": "",
       "columns": {
         "id": {
@@ -139,69 +139,45 @@
           "primaryKey": true,
           "notNull": true
         },
-        "application_number": {
-          "name": "application_number",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "house": {
-          "name": "house",
+        "firstname": {
+          "name": "firstname",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "post_office": {
-          "name": "post_office",
+        "lastname": {
+          "name": "lastname",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "pin_code": {
-          "name": "pin_code",
+        "email": {
+          "name": "email",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "district": {
-          "name": "district",
+        "phone": {
+          "name": "phone",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "student_email": {
-          "name": "student_email",
+        "subject": {
+          "name": "subject",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "state": {
-          "name": "state",
+        "message": {
+          "name": "message",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "country": {
-          "name": "country",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "city": {
-          "name": "city",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "phone_number": {
-          "name": "phone_number",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "alternative_number": {
-          "name": "alternative_number",
-          "type": "text",
+        "privacypolicy": {
+          "name": "privacypolicy",
+          "type": "boolean",
           "primaryKey": false,
           "notNull": true
         },
@@ -216,25 +192,12 @@
           "name": "updated_at",
           "type": "timestamp",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "now()"
         }
       },
       "indexes": {},
-      "foreignKeys": {
-        "ContactDetail_table_application_number_Applicant_table_id_fk": {
-          "name": "ContactDetail_table_application_number_Applicant_table_id_fk",
-          "tableFrom": "ContactDetail_table",
-          "tableTo": "Applicant_table",
-          "columnsFrom": [
-            "application_number"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        }
-      },
+      "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     }

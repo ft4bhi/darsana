@@ -1,4 +1,3 @@
-
 import { integer, pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const Applicant_Table = pgTable('Applicant_table', {
@@ -23,26 +22,5 @@ export const Applicant_Table = pgTable('Applicant_table', {
   updatedAt: timestamp('updated_at').notNull().$onUpdate(() => new Date()),
 });
 
-export const ContactDetail_Table = pgTable('ContactDetail_table', {
-  id: serial('id').primaryKey(),
-  applicationNumber: integer('application_number')
-    .references(() => Applicant_Table.id, { onDelete: 'cascade' }).notNull(),
-  house: text('house').notNull(),
-  postOffice: text('post_office').notNull(),
-  pinCode: text('pin_code').notNull(),
-  district: text('district').notNull(),
-  studentEmail: text('student_email').notNull(),
-  state: text('state').notNull(),
-  country: text('country').notNull(),
-  city: text('city').notNull(),
-  phoneNumber: text('phone_number').notNull(),
-  alternativeNumber: text('alternative_number').notNull(),
-  createdAt: timestamp('created_at').notNull().defaultNow(),
-  updatedAt: timestamp('updated_at').notNull().$onUpdate(() => new Date()),
-});
-
 export type InsertUser = typeof Applicant_Table.$inferInsert;
 export type SelectUser = typeof Applicant_Table.$inferSelect;
-
-export type InsertPost = typeof ContactDetail_Table.$inferInsert;
-export type SelectPost = typeof ContactDetail_Table.$inferSelect;

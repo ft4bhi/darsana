@@ -5,3 +5,14 @@ import { config } from 'dotenv';
 config({ path: '.env.development.local' }); // or .env
 
 export const db = drizzle(sql);
+
+export async function testConnection() {
+  try {
+    const result = await sql`SELECT NOW()`;
+    console.log('Database connection successful:', result);
+    return true;
+  } catch (error) {
+    console.error('Database connection failed:', error);
+    return false;
+  }
+}
