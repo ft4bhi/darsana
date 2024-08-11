@@ -44,9 +44,9 @@ const Sidebar = () => {
 
                     {showProductMenu && (
                         <div className="ml-4 space-y-2">
-                            <Link href="/adminProduct/list" passHref>
+                            <Link href="/products/list" passHref>
                                 <button
-                                    className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/adminProduct/list'
+                                    className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/products/list'
                                         ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
                                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                                         }`}
@@ -56,9 +56,9 @@ const Sidebar = () => {
                                 </button>
                             </Link>
 
-                            <Link href="/adminProduct/add" passHref>
+                            <Link href="/products/add" passHref>
                                 <button
-                                    className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/adminProduct/add'
+                                    className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/products/add'
                                         ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
                                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                                         }`}
@@ -71,9 +71,9 @@ const Sidebar = () => {
                     )}
 
                     {/* Scholarship Button */}
-                    <Link href="/adminScholarship" passHref>
+                    <Link href="/scholarships" passHref>
                         <button
-                            className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/adminScholarship'
+                            className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/scholarships'
                                 ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
                                 : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                                 }`}

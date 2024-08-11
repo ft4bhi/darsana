@@ -1,0 +1,91 @@
+/* globals.css */
+
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    background-color: #f4f4f4;
+    padding: 20px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5em;
+}
+
+.header p {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.imageContainer {
+    margin: 20px 0;
+}
+
+.imagePlaceholder {
+    width: 80%;
+    max-width: 1082px;
+    height: 321px;
+    background-color: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #888;
+    font-size: 1.5em;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.navigation button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.navigation button:hover {
+    background-color: #0056b3;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.details .nameCard {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.details .imageWrapper {
+    flex: 1;
+}
+
+.details .textWrapper {
+    flex: 2;
+    padding-left: 20px;
+}
+
+.details p {
+    max-width: 800px;
+    text-align: justify;
+    font-size: 1em;
+}

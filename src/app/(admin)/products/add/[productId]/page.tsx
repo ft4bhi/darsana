@@ -1,7 +1,7 @@
 // src/app/adminProduct/productList/[productId]/page.tsx
 
 import React from 'react';
-import ProductComponent from '@/components/admin/AdminProduct/productMainComponent';
+import ProductComponent from '@/components/AdminProduct/productMainComponent';
 
 const ProductPage = ({ params }: { params: { productId: string } }) => {
     const { productId } = params;

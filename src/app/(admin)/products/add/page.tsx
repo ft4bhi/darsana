@@ -1,6 +1,6 @@
 // page.tsx
 import React from 'react';
-import AddProductForm from '@/components/admin/AdminProduct/AddProductForm';
+import AddProductForm from '@/components/AdminProduct/AddProductForm';
 
 
 

@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import productimg from '@/assets/admin/productimg.png'
 
 import {
     Table,
@@ -27,7 +28,7 @@ interface Product {
 const products: Product[] = [
     {
         id: 1,
-        image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+        image: productimg.src,
         productName: 'Nilgiri Hair Oil',
         category: 'Oil',
         availability: true,
@@ -35,28 +36,34 @@ const products: Product[] = [
     },
     {
         id: 2,
-        image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+        image: productimg.src,
         productName: 'Nilgiri Hair Oil',
         category: 'Oil',
         availability: true,
         vendor: 'Hari Krishnan',
-    },
-    {
+    }, {
         id: 3,
-        image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+        image: productimg.src,
         productName: 'Nilgiri Hair Oil',
         category: 'Oil',
         availability: true,
         vendor: 'Hari Krishnan',
-    },
-    {
+    }, {
         id: 4,
-        image: 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png',
+        image: productimg.src,
+        productName: 'Nilgiri Hair Oil',
+        category: 'Oil',
+        availability: true,
+        vendor: 'Hari Krishnan',
+    }, {
+        id: 5,
+        image: productimg.src,
         productName: 'Nilgiri Hair Oil',
         category: 'Oil',
         availability: true,
         vendor: 'Hari Krishnan',
     },
+
 ];
 
 const ProductTable = () => {
@@ -64,7 +71,7 @@ const ProductTable = () => {
     const router = useRouter();
 
     const handleRowClick = (productId: number) => {
-        router.push(`/adminProduct/productMainContent/${productId}`);
+        router.push(`/products/add/${productId}`);
 
     };
 
