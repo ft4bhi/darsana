@@ -1,5 +1,5 @@
-import React from 'react';
-import  Home from '@/app/(client)/home/home';
+import Home from "@/app/(client)/home/HomePage";
+
 
 const page = () => {
   return <Home />;

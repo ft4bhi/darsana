@@ -16,4 +16,6 @@
   .navbar__link:hover {
     color: #ff8f9c;
   }
+    /* Add this to your global or component-specific CSS */
+    
 }

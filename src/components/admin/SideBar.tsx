@@ -1,66 +1,99 @@
 'use client';
-import React from 'react';
-import { useRouter } from 'next/router';
+
+import React, { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const Sidebar = () => {
-    const router = useRouter();
+    const pathname = usePathname();
+    const [showProductMenu, setShowProductMenu] = useState(false);
 
     return (
         <div className="w-64 bg-white shadow-lg min-h-screen">
             <div className="p-6">
-                <img
-                    src="/path/to/your-logo.png"
-                    alt="Admin Dashboard"
-                    className="w-20 h-20 mb-6"
-                />
+                {/* <img
+          src="/path/to/your-logo.png"
+          alt="Admin Dashboard"
+          className="w-20 h-20 mb-6"
+        /> */}
                 <div className="space-y-2">
                     {/* Dashboard Button */}
-                    <button
-                        onClick={() => router.push('/(admin)/dashboard')}
-                        className={`flex items-center w-full p-3 rounded-lg ${router.pathname === '/admin/dashboard'
-                            ? 'bg-purple-100 text-purple-600'
-                            : 'text-gray-700 hover:bg-gray-100'
-                            }`}
-                    >
-                        <span className="material-icons-outlined mr-3">dashboard</span>
-                        <span>Dashboard</span>
-                    </button>
+                    <Link href="/dashboard" passHref>
+                        <button
+                            className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/dashboard'
+                                ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
+                                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                                }`}
+                        >
+
+                            Dashboard
+                        </button>
+                    </Link>
 
                     {/* Product Button */}
                     <button
-                        onClick={() => router.push('/(admin)/dashboard')}
-                        className={`flex items-center w-full p-3 rounded-lg ${router.pathname === '/product'
-                            ? 'bg-purple-100 text-purple-600'
-                            : 'text-gray-700 hover:bg-gray-100'
+                        onClick={() => setShowProductMenu(!showProductMenu)}
+                        className={`flex items-center w-full p-3  transition duration-300 ${pathname.startsWith('/adminProduct')
+                            ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
+                            : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                             }`}
                     >
-                        <span className="material-icons-outlined mr-3">inventory_2</span>
-                        <span>Product</span>
+
+                        Products
                     </button>
+
+                    {showProductMenu && (
+                        <div className="ml-4 space-y-2">
+                            <Link href="/products/list" passHref>
+                                <button
+                                    className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/products/list'
+                                        ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
+                                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                                        }`}
+                                >
+
+                                    Product List
+                                </button>
+                            </Link>
+
+                            <Link href="/products/add" passHref>
+                                <button
+                                    className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/products/add'
+                                        ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
+                                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                                        }`}
+                                >
+
+                                    Add Product
+                                </button>
+                            </Link>
+                        </div>
+                    )}
 
                     {/* Scholarship Button */}
+                    <Link href="/scholarships" passHref>
+                        <button
+                            className={`flex items-center w-full p-3  transition duration-300 ${pathname === '/scholarships'
+                                ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
+                                : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                                }`}
+                        >
+
+                            Scholarships
+                        </button>
+                    </Link>
+
+                    {/* Logout Button */}
                     <button
-                        onClick={() => router.push('/(admin)/dashboard')}
-                        className={`flex items-center w-full p-3 rounded-lg ${router.pathname === '/scholarship'
-                            ? 'bg-purple-100 text-purple-600'
-                            : 'text-gray-700 hover:bg-gray-100'
-                            }`}
+                        onClick={() => {
+                            // Implement logout functionality
+                        }}
+                        className="flex items-center w-full p-3 mt-10  transition duration-300 text-red-600 hover:bg-red-100 hover:text-red-900"
                     >
-                        <span className="material-icons-outlined mr-3">school</span>
-                        <span>Scholarship</span>
+
+                        Log out
                     </button>
                 </div>
-
-                {/* Logout Button */}
-                <button
-                    onClick={() => {
-                        // Implement logout functionality
-                    }}
-                    className="flex items-center w-full p-3 mt-10 rounded-lg text-red-600 hover:bg-red-100"
-                >
-                    <span className="material-icons-outlined mr-3">logout</span>
-                    <span>Log Out</span>
-                </button>
             </div>
         </div>
     );
