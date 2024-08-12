@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
-import DarsanaEngineers from "../../../assets/aboutus/DarsanaEngineers.png";
+import Image from 'next/image';
+import ImageSlider from "src/components/aboutus/ImageSlider";
+import DarsanaEngineers from "src/assets/aboutus/DarsanaEngineers.png";
 // import Generalinformation from "../../../assets/aboutus/Generalinformation.png";
 // import aboutimg2 from "../../../assets/aboutus/aboutimg2.png";
 import PresentLeadership from './PresentLeadership/leaders';
@@ -73,50 +75,33 @@ const DarsanaAboutPage: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      
-       
-        
       <h1 className="text-3xl font-bold text-center mb-6">ABOUT US</h1>
-      
       <p className="text-center text-lg mb-8 max-w-3xl mx-auto">
         We are a global diaspora of more than thousand highly experienced
         and socially committed engineers. We work towards making a
         difference in the life of needy and down trodden
       </p>
-      
-      <div className="relative mb-8 flex justify-center">
-        <img
-          src={DarsanaEngineers.src}
-          alt="Group of Darsana engineers"
-          className="object-cover"
-        />
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-          <div className="flex space-x-2">
-            {[1, 2, 3].map((dot) => (
-              <div key={dot} className="w-2 h-2 bg-white rounded-full"></div>
-            ))}
-          </div>
-        </div>
-      </div>
-      
+
+      <ImageSlider />
+
       <div 
-  className="h-14 flex justify-between px-2 mb-6 rounded-lg overflow-x-auto" 
-  style={{ backgroundColor: '#1187C9' }}
->
-  {tabs.map((tab) => (
-    <button 
-      key={tab} 
-      className={`text-xs px-3 py-2 rounded`} 
-      style={{
-        backgroundColor: activeTab === tab ? '#0E5B8A' : 'transparent',
-        color: activeTab === tab ? '#FFFFFF' : '#000000'
-      }}
-      onClick={() => setActiveTab(tab)}
-    >
-      {tab}
-    </button>
-  ))}
-</div>
+        className="h-14 flex justify-between px-2 mb-6 rounded-lg overflow-x-auto" 
+        style={{ backgroundColor: '#1187C9' }}
+      >
+        {tabs.map((tab) => (
+          <button 
+            key={tab} 
+            className={`text-xs px-3 py-2 rounded`} 
+            style={{
+              backgroundColor: activeTab === tab ? '#0E5B8A' : 'transparent',
+              color: activeTab === tab ? '#FFFFFF' : '#000000'
+            }}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </button>
+        ))}
+      </div>
       
       <div className="mb-8 px-4">
         {renderTabContent()}
