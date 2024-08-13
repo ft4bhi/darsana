@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FaFilter, FaRedo } from 'react-icons/fa';
 import { format } from 'date-fns';
+import './Filter.css';
 
 interface FilterProps {
   onFilterChange: (filters: { month: string; year: string; category: string; search: string }) => void;
@@ -50,7 +51,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
             }}
             dateFormat="MMMM yyyy"
             showMonthYearPicker
-            className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm custom-datepicker bg-white"
+            className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm custom-datepicker"
             placeholderText="Select month and year"
           />
         </div>
@@ -68,7 +69,8 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
           >
             <option value="">Category</option>
             <option value="scholarship">Scholarship</option>
-            <option value="class">Class</option>
+            <option value="support">Support</option>
+            <option value="house construction">House Construction</option>
             {/* Add more categories as needed */}
           </select>
         </div>
