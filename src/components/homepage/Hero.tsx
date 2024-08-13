@@ -1,13 +1,11 @@
-// src/components/homepage/HeroCarousel.tsx
-'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
 
-// Define props interface
 interface CarouselItem {
     imageSrc: StaticImageData;
     title: string;
+    subtitle?: string; // Make subtitle optional
 }
 
 interface HeroCarouselProps {
@@ -18,24 +16,37 @@ interface HeroCarouselProps {
 
 const HeroCarousel: React.FC<HeroCarouselProps> = ({ slideData, autoPlay, interval }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const touchStartX = useRef(0);
+    const touchEndX = useRef(0);
 
-    const handleNext = () => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slideData.length);
-    };
-
-    const handlePrev = () => {
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + slideData.length) % slideData.length);
+    const handleSwipe = () => {
+        if (touchStartX.current - touchEndX.current > 50) {
+            // Swipe left
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % slideData.length);
+        } else if (touchEndX.current - touchStartX.current > 50) {
+            // Swipe right
+            setCurrentIndex((prevIndex) => (prevIndex - 1 + slideData.length) % slideData.length);
+        }
     };
 
     useEffect(() => {
         if (autoPlay) {
-            const autoPlayInterval = setInterval(handleNext, interval);
+            const autoPlayInterval = setInterval(() => {
+                setCurrentIndex((prevIndex) => (prevIndex + 1) % slideData.length);
+            }, interval);
             return () => clearInterval(autoPlayInterval);
         }
-    }, [autoPlay, interval]);
+    }, [autoPlay, interval, slideData.length]);
 
     return (
-        <div className="relative w-full h-screen overflow-hidden">
+        <div
+            className="relative w-full h-screen overflow-hidden"
+            onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
+            onTouchEnd={(e) => {
+                touchEndX.current = e.changedTouches[0].clientX;
+                handleSwipe();
+            }}
+        >
             {slideData.map((item, index) => (
                 <div
                     key={index}
@@ -50,24 +61,29 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slideData, autoPlay, interv
                         priority
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-40" />
-                    <div className="absolute inset-0 flex flex-col justify-center items-start p-8 md:p-16">
-                        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">{item.title}</h1>
-                        {/* Other content */}
+                    <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 flex flex-col space-y-4">
+                        <h1 className="text-4xl md:text-6xl font-bold text-white">{item.title}</h1>
+                        <p className="text-xl md:text-2xl text-white">{item.subtitle}</p>
+                        <div className="flex space-x-4">
+                            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                                Play Video
+                            </button>
+                            <button className="bg-gray-700 text-white px-4 py-2 rounded-lg">
+                                What We Do
+                            </button>
+                        </div>
                     </div>
                 </div>
             ))}
-            <button
-                onClick={handlePrev}
-                className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
-            >
-                <Image src="/images/next.svg" alt="Previous" width={24} height={24} className="rotate-180" />
-            </button>
-            <button
-                onClick={handleNext}
-                className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
-            >
-                <Image src="/images/next.svg" alt="Next" width={24} height={24} />
-            </button>
+            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {slideData.map((_, index) => (
+                    <div
+                        key={index}
+                        className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-white' : 'bg-gray-400'
+                            }`}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

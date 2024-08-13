@@ -1,5 +1,5 @@
-jimport { NextResponse } from 'next/server';
-import { db, ContactDetail_Table } from '@/db/schema/contactus';
+import { NextResponse } from 'next/server';
+import { ContactUsDb, ContactDetail_Table } from '@/db/schema/contactus';
 import { testConnection } from '@/db';
 
 export async function POST(request: Request) {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
         }
         
         console.log('Attempting to insert data into database');
-        const newContact = await db.insert(ContactDetail_Table).values({
+        const newContact = await ContactUsDb.insert(ContactDetail_Table).values({
             firstname,
             lastname,
             email,
