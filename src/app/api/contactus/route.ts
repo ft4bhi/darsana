@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+jimport { NextResponse } from 'next/server';
 import { db, ContactDetail_Table } from '@/db/schema/contactus';
 import { testConnection } from '@/db';
 
