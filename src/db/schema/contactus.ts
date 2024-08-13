@@ -3,7 +3,7 @@ import { pgTable, serial, text, timestamp, boolean } from 'drizzle-orm/pg-core';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
 import { sql } from "@vercel/postgres";
 
-export const db = drizzle(sql);
+export const ContactUsDb = drizzle(sql);
 
 export const ContactDetail_Table = pgTable('contact_detail_table', {
   id: serial('id').primaryKey(),

@@ -1,6 +1,7 @@
 import { memo } from "react";
 import Link from "next/link";
 
+
 const Footer = memo(() => {
   return (
     <footer className="w-[1387px] bg-www-equalopp-org-1349x593-default-nero flex flex-row items-start justify-between pt-5 pb-6 pr-[29px] pl-0 box-border max-w-full shrink-0 gap-[20px] text-left text-base text-black font-h3 mq1350:flex-wrap mq1350:pl-5 mq1350:pr-5 mq1350:box-border">

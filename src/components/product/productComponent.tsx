@@ -1,5 +1,8 @@
+// components/product/productComponent.tsx
+
 "use client";
 import React, { useState } from 'react';
+import Image, { StaticImageData } from 'next/image';
 
 interface ProductProps {
     price: string;
@@ -18,6 +21,8 @@ interface ProductProps {
     supplierContact: string;
     supplierEmail: string;
     description: string;
+    mainImage: StaticImageData;
+    thumbnails: StaticImageData[];
 }
 
 const ProductComponent: React.FC<ProductProps> = ({
@@ -37,37 +42,37 @@ const ProductComponent: React.FC<ProductProps> = ({
     supplierContact,
     supplierEmail,
     description,
+    mainImage,
+    thumbnails,
 }) => {
-    const [mainImage, setMainImage] = useState("https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    const [currentImage, setCurrentImage] = useState(mainImage);
     const [quantity, setQuantity] = useState(1);
-
-    const thumbnails = [
-        "https://images.pexels.com/photos/1261422/pexels-photo-1261422.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    ];
 
     return (
         <div className="flex flex-col w-full mx-auto p-5">
             <div className="flex mb-5">
                 <div className="w-1/2 pr-4">
-                    <img
-                        src={mainImage}
-                        alt="Product Image"
-                        className="w-full object-cover mb-2"
-                    />
+                    <div className="relative w-full h-80">
+                        <Image
+                            src={currentImage}
+                            alt="Product Image"
+                            layout="fill"
+                            objectFit="cover"
+                            className="w-full"
+                        />
+                    </div>
                     <div className="flex gap-2 mt-2">
                         {thumbnails.map((src, index) => (
-                            <img
-                                key={index}
-                                src={src}
-                                alt={`Thumbnail ${index + 1}`}
-                                className="w-12 h-12 object-cover cursor-pointer"
-                                onClick={() => setMainImage(src)}
-                            />
+                            <div key={index} className="relative w-16 h-16">
+                                <Image
+                                    src={src}
+                                    alt={`Thumbnail ${index + 1}`}
+                                    layout="fill"
+                                    objectFit="cover"
+                                    className="cursor-pointer"
+                                    onClick={() => setCurrentImage(src)}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -171,6 +176,3 @@ const ProductComponent: React.FC<ProductProps> = ({
 };
 
 export default ProductComponent;
-
-
-
