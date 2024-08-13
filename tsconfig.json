@@ -36,7 +36,7 @@
     ".next/types/**/*.ts",
     "src/components/navbar.tsx",
     "src/app/(client)/home/page.js"
-  ],
+, "src/lib/firebase/auth.ts"  ],
   "exclude": [
     "node_modules"
   ]
