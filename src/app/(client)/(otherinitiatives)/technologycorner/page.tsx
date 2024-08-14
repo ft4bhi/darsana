@@ -1,4 +1,5 @@
 import React from 'react';
+import Technology_Corner from "@/assets/initiatives/Technology_Corner.png";
 
 const TechnologyCornerPage: React.FC = () => {
     return (
@@ -11,7 +12,7 @@ const TechnologyCornerPage: React.FC = () => {
 
             <div className="flex justify-center my-8">
                 <img
-                    src="src\assets\initiatives\Technology_Corner.png"
+                    src={Technology_Corner.src}
                     alt="Technology Corner"
                     className="w-full max-w-4xl rounded-lg shadow-lg"
                 />

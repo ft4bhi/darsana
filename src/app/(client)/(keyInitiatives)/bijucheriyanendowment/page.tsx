@@ -1,4 +1,5 @@
 import React from 'react';
+import Biju_Cherian_Endowment from "@/assets/initiatives/Biju_Cherian_Endowment.png"
 
 const AwardPage: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const AwardPage: React.FC = () => {
       <h1 style={styles.header}>Prabakaran Memorial Best Project Award</h1>
       <div style={styles.imageContainer}>
         <img
-          src="src\assets\initiatives\Biju_Cherian_Endowment.png"
+          src={Biju_Cherian_Endowment.src}
           alt="Award Presentation"
           style={styles.image}
         />
