@@ -2,47 +2,37 @@
 import "../../globals.css";
 import React, { useState, useEffect } from 'react';
 import HeroCarousel from '@/components/homepage/Hero';
-// Ensure correct import case
-
 import EventCarousel from "@/components/homepage/event";
 import image17 from '@/assets/home/image17.png';
 import bijuschreiyanhomeheroimage from '@/assets/home/bijuschreiyanhomeheroimage.png';
 import darsanaCommunityEventProgram from '@/assets/home/darsanaCommunityEventProgram.png';
-// import { StaticImageData } from 'next/image';
 import DarsanaSection from '@/components/homepage/DarsanaSection';
 import programLogo from '@/assets/home/programLogo.svg';
 import galleryLogo from '@/assets/home/galaryLogo.png';
 import conversationLogo from '@/assets/home/conversationLogo.svg';
-// import { StaticImageData } from 'next/image';
 import ProductHighlight from '@/components/homepage/product';
 import producthome1 from '@/assets/home/producthome1.png';
 import producthome2flower from '@/assets/home/producthome2flower.png';
 import productimagehomeplant3 from '@/assets/home/productimagehomeplant3.png';
-
 import Featured from "@/components/homepage/featured";
-
-
-
-
 
 const slideData = [
     {
         imageSrc: image17,
         title: 'Biju Cherian Scholarship (BCS) program - Slide 1',
-        subtitle: 'Subtitle for Slide 1', // Add this line
+        subtitle: 'Subtitle for Slide 1',
     },
     {
         imageSrc: bijuschreiyanhomeheroimage,
         title: 'Biju Cherian Scholarship (BCS) program - Slide 2',
-        subtitle: 'Subtitle for Slide 2', // Add this line
+        subtitle: 'Subtitle for Slide 2',
     },
     {
         imageSrc: darsanaCommunityEventProgram,
         title: 'Biju Cherian Scholarship (BCS) program - Slide 3',
-        subtitle: 'Subtitle for Slide 3', // Add this line
+        subtitle: 'Subtitle for Slide 3',
     },
 ];
-
 
 interface EventItem {
     title: string;
@@ -91,8 +81,7 @@ const HomePage: React.FC = () => {
             {/* Upcoming Events Section */}
             <EventCarousel events={events} />
 
-
-            {/* {DarsanaSection } */}
+            {/* Darsana Section */}
             <DarsanaSection
                 programLogo={programLogo}
                 galleryLogo={galleryLogo}
@@ -111,11 +100,11 @@ const HomePage: React.FC = () => {
                 ]}
             />
 
-
+            {/* Featured Section */}
             <Featured />
 
             {/* Footer Section */}
-            {/* <footer className="py-16 bg-gray-800 text-white">
+            <footer className="py-16 bg-gray-800 text-white">
                 <div className="container mx-auto text-center px-4">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
                         <a href="/contactUs" className="text-gray-400">Contact us</a>
@@ -131,7 +120,6 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             </footer>
-        </div> */}
         </div>
     );
 };
