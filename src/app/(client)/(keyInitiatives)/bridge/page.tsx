@@ -1,4 +1,5 @@
 import React from 'react';
+import bridge from "@/assets/initiatives/bridge.png"
 
 const BridgePage: React.FC = () => {
   return (
@@ -6,7 +7,7 @@ const BridgePage: React.FC = () => {
       <h1 style={{ textAlign: 'center' }}>Bridge</h1>
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
         <img 
-          src="src\assets\initiatives\bridge.png" 
+          src={bridge.src}
           alt="Bridge Program" 
           style={{ maxWidth: '100%', height: 'auto' }}
         />

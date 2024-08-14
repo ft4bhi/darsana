@@ -1,4 +1,5 @@
 import React from 'react';
+import prabakaranMemorialAward from 'src/assets/initiatives/prabakaran_memorial_award.png';
 
 const PrabakaranMemorialAwardPage: React.FC = () => {
     return (
@@ -11,7 +12,7 @@ const PrabakaranMemorialAwardPage: React.FC = () => {
 
             <div className="flex justify-center my-8">
                 <img
-                    src="src\assets\initiatives\prabakaran_memorial_award.png"
+                    src={prabakaranMemorialAward.src}
                     alt="Prabakaran Memorial Best Project Award Ceremony"
                     className="w-full max-w-4xl rounded-lg shadow-lg"
                 />
@@ -37,16 +38,16 @@ const PrabakaranMemorialAwardPage: React.FC = () => {
                     There were 41 projects which were registered for the Prabhakaran Award 2024.
                 </p>
                 <p className="mb-4">
-                    Interim Review of these projects were done on 12th, 13th, 14th and 19th February evenings. 26 groups presented their projects.
+                    Interim Review of these projects were done on 12th, 13th, 14th, and 19th February evenings. 26 groups presented their projects.
                 </p>
                 <p className="mb-4">
-                    The presentation included about 5 power point slides, a high level summary of the project and the current progress. These were reviewed by 9 judges. All from UAE members. The judges provided their feedback and sometimes discussed with the students about the prospects and scopes for improvements. Coordinator Dr. Sajeesh provided all required coordinations with the student teams.
+                    The presentation included about 5 PowerPoint slides, a high-level summary of the project, and the current progress. These were reviewed by 9 judges, all from UAE members. The judges provided their feedback and sometimes discussed with the students about the prospects and scopes for improvements. Coordinator Dr. Sajeesh provided all required coordination with the student teams.
                 </p>
                 <p className="mb-4">
-                    A Jotform was shared to the judges. Judges marked their marks instantly in the online form upon completion of the presentations. This process took about a minute only. Committee plans to implement the same during the final evaluation. This will help to announce the winner faster.
+                    A Jotform was shared with the judges. Judges marked their scores instantly in the online form upon completion of the presentations. This process took about a minute only. The committee plans to implement the same during the final evaluation. This will help announce the winner faster.
                 </p>
                 <p className="mb-4">
-                    The final review is expected in May-June depending on the Final Year exam. Committee is coordinating with Dr. Sajeesh for the same.
+                    The final review is expected in May-June depending on the Final Year exam. The committee is coordinating with Dr. Sajeesh for the same.
                 </p>
             </div>
         </div>

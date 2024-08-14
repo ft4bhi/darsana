@@ -1,7 +1,8 @@
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import courseExplorer from "@/assets/initiatives/course_explorer.png";
 
-const Page = () => {
+const Page: React.FC = () => {
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
       <h1 style={{ textAlign: 'center', marginBottom: '40px' }}>Course Explorer</h1>
@@ -11,7 +12,7 @@ const Page = () => {
       </div>
 
       <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-        <Image src="src\assets\initiatives\course_explorer.png" alt="Course Explorer 2021" width={600} height={400} />
+        <Image src={courseExplorer.src} alt="Course Explorer 2021" width={600} height={400} />
       </div>
 
       <p>

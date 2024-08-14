@@ -1,32 +1,33 @@
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import houseConstructionKey from "@/assets/initiatives/House_construction_key.png";
 
-const Page = () => {
+const Page: React.FC = () => {
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px', fontFamily: 'Arial, sans-serif', lineHeight: '1.6' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '40px', fontSize: '2.5rem', color: '#333' }}>House Constructions</h1>
+    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px', fontFamily: 'Arial, sans-serif', lineHeight: '1.8', backgroundColor: '#f9f9f9', borderRadius: '10px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)' }}>
+      <h1 style={{ textAlign: 'center', marginBottom: '40px', fontSize: '2.5rem', color: '#333', fontWeight: 'bold' }}>House Constructions</h1>
 
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '30px' }}>
-        <Image src="src\assets\initiatives\House_construction_key.png" alt="House Construction" width={600} height={400} style={{ borderRadius: '10px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)' }} />
+        <Image src={houseConstructionKey.src} alt="House Construction" width={600} height={400} style={{ borderRadius: '10px', boxShadow: '0 6px 12px rgba(0, 0, 0, 0.15)' }} />
       </div>
 
-      <p>
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
         As a socially committed organization, Darsana decided to join the “Rebuild Kerala” initiative by the Government of Kerala to support the families affected by the floods in 2018.
       </p>
 
-      <p>
-        Darsana also decided to use its engineering skills to design cost-effective, sustainable houses as part of this initiative bearing in mind the impact of cost, time, and environment. It formed a team to develop a methodology to achieve this goal and manage execution.
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
+        Darsana also decided to use its engineering skills to design cost-effective, sustainable houses as part of this initiative, bearing in mind the impact of cost, time, and environment. It formed a team to develop a methodology to achieve this goal and manage execution.
       </p>
 
-      <p>
-        Darsana team constructed six houses in Palakkad under the supervision of Sri. Shibu and three homes in Calicut and Malappuram coordinated by Sri. Babeesh.
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
+        Darsana's team constructed six houses in Palakkad under the supervision of Sri. Shibu and three homes in Calicut and Malappuram coordinated by Sri. Babeesh.
       </p>
 
-      <p>
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
         Darsana members contributed about Rs. 24 lakhs for this noble cause. Most of the houses were constructed with fly ash blocks and truss roofing with Mangalore tile to reduce cost and time.
       </p>
 
-      <ul style={{ marginTop: '20px', marginBottom: '40px', paddingLeft: '20px', color: '#555' }}>
+      <ul style={{ marginTop: '20px', marginBottom: '40px', paddingLeft: '20px', color: '#555', fontSize: '1.1rem', listStyleType: 'disc' }}>
         <li><strong>First project of My home</strong> for Smt. Sreedevi Amma at Railway Colony, Palakkad. A 500 Sq ft house was constructed in 22 days at the cost of Rs. 4,96,180. The key handover was done by Com. V. S. Achuthanandan and Com. M. B. Rajesh on 21/12/18.</li>
         <li><strong>Marutharoad project</strong> for Smt. Nabeesa at Marutha road, Palakkad. 451 Sq ft house constructed at the cost of Rs. 5,08,354. The key handover was done by Com. M. B. Rajesh on 12/03/19.</li>
         <li><strong>Kallikkad project</strong> for Smt. Kashu at Kallikkad with the support of service cooperative bank. 440 Sq ft house constructed at the cost of Rs. 5,16,645. The key handover was done by bank authorities on 21/04/19.</li>
@@ -35,15 +36,15 @@ const Page = () => {
         <li><strong>Paitankunnu project of My home</strong> for Smt. Vella at Paittankunnu, Palakkad. 392 Sq ft house constructed at the cost of Rs. 5,74,995. The key handover was done by Com N N Krishnadas.</li>
       </ul>
 
-      <p>
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
         Darsana coordinated a seminar on the topic “Alternative methods in house construction” at the venue of “Nattuvicharam” coordinated by Com. Niranjan on December 26 & 27, 2019.
       </p>
 
-      <p>
-        Darsana participated and won 2nd place for the construction methodology in one day workshop and exhibition “NEW HOUSING LITERACY FOR REBUILDING KERALA” conducted by NIT Calicut.
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
+        Darsana participated and won 2nd place for the construction methodology in a one-day workshop and exhibition “NEW HOUSING LITERACY FOR REBUILDING KERALA” conducted by NIT Calicut.
       </p>
 
-      <p>
+      <p style={{ color: '#555', fontSize: '1.1rem', marginBottom: '20px' }}>
         The 11th house with the funding of KC’s WomenWings, USA was constructed at Mannaar, Alappuzha.
       </p>
     </div>

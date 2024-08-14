@@ -1,23 +1,24 @@
 import React from 'react';
+import covidCareImage from 'src/assets/initiatives/covid_care.png';
 
 const CovidCareSupportPage: React.FC = () => {
     return (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto p-6 bg-gray-100">
             <div className="text-center">
-                <h1 className="text-4xl font-bold text-gray-800 mb-4">
+                <h1 className="text-4xl font-bold text-gray-800 mb-8">
                     Covid Care Support
                 </h1>
             </div>
 
-            <div className="flex justify-center my-8">
+            <div className="flex justify-center mb-8">
                 <img
-                    src="src\assets\initiatives\covid_care.png"
+                    src={covidCareImage.src}
                     alt="Covid Care Support"
-                    className="w-full max-w-4xl rounded-lg shadow-lg"
+                    className="w-full max-w-3xl rounded-lg shadow-lg"
                 />
             </div>
 
-            <div className="text-gray-700 leading-loose">
+            <div className="bg-white p-6 rounded-lg shadow-md text-gray-700 leading-relaxed">
                 <p className="mb-4">
                     Darsana has been at the forefront of Covid care and support; a few initiatives that Darsana had taken during the pandemic are highlighted below.
                 </p>
