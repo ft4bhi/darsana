@@ -133,7 +133,7 @@ const DarsanaScholarshipPage: React.FC = () => {
 
                     <div className="text-center my-8">
                         <p className="mb-2">Click here to apply for the scholarship</p>
-                        <Link href="scholarship/apply">
+                        <Link href="Scholarship/apply">
                             <button className="bg-blue-500 text-white px-4 py-2 rounded">
                                 APPLY NOW
                             </button>

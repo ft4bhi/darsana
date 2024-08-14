@@ -3,6 +3,7 @@
 import React from 'react';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
+import products from '@/components/product/data/ProductData'
 
 export interface Product {
     title: string;
@@ -17,7 +18,7 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     return (
-        <Link href={`/product/}`} className="block border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+        <Link href={`/product/${product.link}`} className="block border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
             <div className="relative w-full h-32">
                 <Image
                     src={product.imageUrl}
