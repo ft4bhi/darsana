@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 export default function ProductPage() {
   return (
     <div>
-      <ProductHero />
+      {/* <ProductHero /> */}
       <NewProducts />
       {/* Other product page content */}
     </div>

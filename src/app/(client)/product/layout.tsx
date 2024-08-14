@@ -5,6 +5,7 @@ import "./globals.css";
 
 
 
+
 export default function ProductLayout({
   children,
 }: Readonly<{
@@ -18,6 +19,7 @@ export default function ProductLayout({
 
 
       {children}
+
     </>
   );
 }

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, Mail, Phone } from 'lucide-react';
+import Link from 'next/link';
 
 import scholarship_hero from '@/assets/scholarship/scholarship_hero.png'
 
@@ -132,9 +133,11 @@ const DarsanaScholarshipPage: React.FC = () => {
 
                     <div className="text-center my-8">
                         <p className="mb-2">Click here to apply for the scholarship</p>
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded">
-                            APPLY NOW
-                        </button>
+                        <Link href="Scholarship/apply">
+                            <button className="bg-blue-500 text-white px-4 py-2 rounded">
+                                APPLY NOW
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </main>

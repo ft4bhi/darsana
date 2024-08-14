@@ -30,14 +30,18 @@ const EventDetails: React.FC<EventDetailsProps> = ({ date, time, title, descript
       <div className="flex items-center mb-4">
         <p className="text-lg text-gray-600">{date} | {time}</p>
       </div>
-      <h2 className="text-xl font-semibold mb-2">{title}</h2>
-      <p>{description}</p>
+      {/* <h2 className="text-xl font-semibold mb-2">{title}</h2> */}
+      <p className="whitespace-pre-line">{description}</p>
     </div>
   );
 };
 
 // Fixed Icons for Top and Share
-const FixedIcons: React.FC = () => {
+interface FixedIconsProps {
+  className?: string; // Optional className prop to allow custom styles
+}
+
+const FixedIcons: React.FC<FixedIconsProps> = ({ className }) => {
   const [showArrow, setShowArrow] = useState<boolean>(false);
 
   useEffect(() => {
@@ -55,8 +59,22 @@ const FixedIcons: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator.share({
+        title: document.title,
+        text: 'Check out this event!',
+        url: window.location.href,
+      })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing:', error));
+    } else {
+      alert('Web Share API is not supported in your browser.');
+    }
+  };
+
   return (
-    <div className="fixed left-4 top-1/2 transform -translate-y-1/2 space-y-4 flex flex-col items-center">
+    <div className={`fixed left-4 top-1/2 transform -translate-y-1/2 space-y-4 flex flex-col items-center ${className}`}>
       {showArrow && (
         <button
           onClick={scrollToTop}
@@ -66,7 +84,7 @@ const FixedIcons: React.FC = () => {
         </button>
       )}
       <button
-        onClick={() => alert('Share this event!')} // Implement share functionality
+        onClick={handleShare}
         className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-700"
       >
         <FaShareAlt size={24} />

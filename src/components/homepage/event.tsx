@@ -1,117 +1,116 @@
-'use client'
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { useRef, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-interface Event {
-  id: number;
-  date: string;
-  month: string;
+interface EventItem {
   title: string;
-  imageUrl: string;
+  description: string;
+  date: string; // ISO date string
+  month: string;
 }
 
-const events: Event[] = [
-  {
-    id: 1,
-    date: '13',
-    month: 'apr',
-    title: 'A day with our wonderful children',
-    imageUrl: '/Event header.png',
-  },
-  {
-    id: 2,
-    date: '25',
-    month: 'apr',
-    title: 'Seminar: Caring for children with autism',
-    imageUrl: '/Event header.png',
-  },
-  {
-    id: 3,
-    date: '13',
-    month: 'apr',
-    title: 'A day with our wonderful children',
-    imageUrl: '/Event header.png',
-  },
-  {
-    id: 4,
-    date: '25',
-    month: 'apr',
-    title: 'Seminar: Caring for children with autism',
-    imageUrl: '/Event header.png',
-  },
-  // Add more events here
-];
+interface EventCardProps extends EventItem { }
 
-const OurEvents: NextPage = () => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scroll = useCallback((direction: 'left' | 'right') => {
-    const container = scrollContainerRef.current;
-    if (container) {
-      const scrollAmount = container.offsetWidth;
-      container.scrollBy({
-        left: direction === 'left' ? -scrollAmount : scrollAmount,
-        behavior: 'smooth'
-      });
-    }
-  }, []);
+const EventCard: React.FC<EventCardProps> = ({ date, month, title, description }) => {
+  const eventDate = new Date(date);
+  const day = eventDate.getUTCDate(); // Extracting the day
 
   return (
-    <>
-      <Head>
-        <title>Our Events | Organization Name</title>
-        <meta name="description" content="Join us for our upcoming events focused on children and autism awareness." />
-        <meta name="keywords" content="events, children, autism, seminar" />
-      </Head>
-      <div className="w-full relative text-left text-white font-h3 px-4 md:px-8 lg:px-16">
-        <div className="flex flex-col items-start justify-start py-8">
-          <h1 className="text-3xl md:text-4xl text-primary-text font-medium mb-4">Our Events</h1>
-          <div className="w-full border-t border-border" />
-        </div>
-        <div className="relative">
-          <button 
-            className="absolute top-1/2 -left-4 transform -translate-y-1/2 rounded-full bg-white border border-black p-2 md:p-4 text-black z-10" 
-            aria-label="Previous event"
-            onClick={() => scroll('left')}
-          >
-            <FontAwesomeIcon icon={faChevronLeft} className="w-6 h-6" />
-          </button>
-          <div 
-            ref={scrollContainerRef}
-            className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide px-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {events.map((event) => (
-              <div key={event.id} className="bg-steelblue rounded-xl p-6 md:p-8 flex-shrink-0 w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1rem)] snap-start mr-4">
-                <div className="flex items-start">
-                  <div className="flex flex-col items-start mr-4">
-                    <div className="text-4xl font-medium leading-tight">{event.date}</div>
-                    <div className="text-sm uppercase tracking-wider font-medium">{event.month}</div>
-                  </div>
-                  <div className="flex-grow">
-                    <Image src={event.imageUrl} alt="Event header" width={196} height={18} className="mb-4" />
-                    <h2 className="text-xl md:text-2xl font-bold leading-tight mb-4">{event.title}</h2>
-                  </div>
-                  <FontAwesomeIcon icon={faChevronRight} className="w-8 h-8 ml-4 self-center" />
-                </div>
-              </div>
-            ))}
-          </div>
-          <button 
-            className="absolute top-1/2 -right-4 transform -translate-y-1/2 rounded-full bg-white border border-black p-2 md:p-4 text-black z-10" 
-            aria-label="Next event"
-            onClick={() => scroll('right')}
-          >
-            <FontAwesomeIcon icon={faChevronRight} className="w-6 h-6" />
-          </button>
-        </div>
+    <div className="bg-blue-500 text-white rounded-lg p-6 h-full flex flex-col">
+      <div className="flex flex-col items-start mb-4">
+        <p className="text-5xl font-bold mb-1">{day}</p>
+        <p className="text-2xl font-semibold uppercase">{month}</p>
       </div>
-    </>
+      <h3 className="text-lg font-bold text-center mt-auto">{title}</h3>
+      <p className="text-sm text-center mt-2">{description}</p>
+    </div>
   );
 };
 
-export default OurEvents;
+interface EventCarouselProps {
+  events: EventItem[];
+}
+
+const EventCarousel: React.FC<EventCarouselProps> = ({ events }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [clonedEvents, setClonedEvents] = useState<EventItem[]>([]);
+
+  useEffect(() => {
+    setClonedEvents([...events, ...events.slice(0, 2)]);
+  }, [events]);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      if (nextIndex >= events.length) {
+        setTimeout(() => setCurrentIndex(0), 0);
+        return events.length;
+      }
+      return nextIndex;
+    });
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => {
+      if (prevIndex === 0) {
+        setTimeout(() => setCurrentIndex(events.length - 1), 0);
+        return -1;
+      }
+      return prevIndex - 1;
+    });
+  };
+
+  const getTranslateX = () => {
+    if (currentIndex === -1) return '50%';
+    if (currentIndex === events.length) return `-${(events.length - 1) * 50}%`;
+    return `-${currentIndex * 50}%`;
+  };
+
+  if (events.length === 0) {
+    return (
+      <section className="py-8 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8">Our Events</h2>
+          <p className="text-center">No upcoming events at this time.</p>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="py-8 bg-white">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-extrabold text-center mb-12">Events</h2>
+        <div className="relative">
+          <button
+            onClick={handlePrev}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md"
+            aria-label="Previous event"
+          >
+            <ChevronLeft size={24} />
+          </button>
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-300 ease-in-out"
+              style={{ transform: `translateX(${getTranslateX()})` }}
+            >
+              {clonedEvents.map((event: EventItem, index: number) => (
+                <div key={index} className="w-1/2 flex-shrink-0 px-2">
+                  <EventCard {...event} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <button
+            onClick={handleNext}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md"
+            aria-label="Next event"
+          >
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EventCarousel;

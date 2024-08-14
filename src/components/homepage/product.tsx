@@ -1,32 +1,41 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
+import React from 'react';
+import Image from 'next/image';
 
-const Frame: NextPage = () => {
+interface ProductHighlightProps {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  images: string[];
+}
+
+const ProductHighlight: React.FC<ProductHighlightProps> = ({ title, subtitle, buttonText, images }) => {
   return (
-    <>
-      <Head>
-        <title>Discover Locally Sourced Treasures</title>
-        <meta name="description" content="Explore the magic of locally sourced treasures. Discover unique products that are locally made and sourced." />
-      </Head>
-      <div style={{ width: '100%', position: 'relative', height: '47.125rem', overflow: 'hidden', fontFamily: 'Poppins, sans-serif', color: '#252525', textAlign: 'left', fontSize: '4.5rem' }}>
-        <h1 style={{ margin: 0, position: 'absolute', top: '3.625rem', left: '4.563rem', fontWeight: 'bold', width: '28.313rem' }}>
-          Discover the Magic of Locally Sourced Treasures!
-        </h1>
-        <div style={{ position: 'absolute', top: '38.938rem', left: 0, width: '20.813rem', display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: '1.5rem', color: '#fff0f0' }}>
-          <div style={{ borderRadius: '36px', backgroundColor: '#1897dc', display: 'flex', alignItems: 'center', padding: '1.5rem 3rem' }}>
-            <h3 style={{ margin: 0, fontWeight: 'bold', lineHeight: '1.125rem' }}>Explore</h3>
-          </div>
+    <section className="py-16 px-4 bg-white">
+      <div className="container mx-auto flex flex-wrap items-center">
+        <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
+          <h2 className="text-4xl font-bold mb-4">{title}</h2>
+          <p className="text-xl mb-6">{subtitle}</p>
+          <button className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300">
+            {buttonText}
+          </button>
         </div>
-        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: '82.625rem', height: '41rem' }}>
-            <img style={{ position: 'absolute', top: '19.125rem', left: '24.188rem', borderRadius: '24px', width: '21.063rem', height: '21.875rem', objectFit: 'cover' }} alt="Product Home Plant" src="product image home plant 3.png" />
-            <img style={{ position: 'absolute', top: '19.125rem', left: '0.563rem', borderRadius: '24px', width: '22.063rem', height: '21.875rem', objectFit: 'cover' }} alt="Product Home Flower" src="product home 2 flower.png" />
-            <img style={{ position: 'absolute', top: 0, left: 0, borderRadius: '24px', width: '45.25rem', height: '16.188rem', objectFit: 'cover' }} alt="Product Home" src="product home 1.png" />
-          </div>
+        <div className="w-full lg:w-1/2 grid grid-cols-2 gap-4">
+          {images.map((src, index) => (
+            <div key={index} className={`relative ${index === 0 ? 'col-span-2' : ''} overflow-hidden rounded-lg`}>
+              <Image
+                src={src}
+                alt={`Product image ${index + 1}`}
+                layout="responsive"
+                width={500}
+                height={index === 0 ? 300 : 250}
+                objectFit="cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 
-export default Frame;
+export default ProductHighlight;
