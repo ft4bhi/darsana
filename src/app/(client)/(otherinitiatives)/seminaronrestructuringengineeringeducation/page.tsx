@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import seminarImage from 'src/assets/initiatives/seminar_image.png'; // Update this path as needed
+import seminarImage from 'src/assets/initiatives/seminar_image.jpg'; // Update this path as needed
 
 const SeminarPage: React.FC = () => {
   return (
