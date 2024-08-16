@@ -101,25 +101,11 @@ const HomePage: React.FC = () => {
             />
 
             {/* Featured Section */}
-            <Featured />
-
+            <div className="pb-20 bg-white">
+                <Featured />
+            </div>
             {/* Footer Section */}
-            <footer className="py-16 bg-gray-800 text-white">
-                <div className="container mx-auto text-center px-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-                        <a href="/contactUs" className="text-gray-400">Contact us</a>
-                        <a href="#" className="text-gray-400">About us</a>
-                        <a href="#" className="text-gray-400">Chapters</a>
-                        <a href="#" className="text-gray-400">Eye magazine</a>
-                    </div>
-                    <div className="flex flex-wrap justify-center">
-                        <a href="#" className="text-gray-400 mx-4 mb-4">Facebook</a>
-                        <a href="#" className="text-gray-400 mx-4 mb-4">Instagram</a>
-                        <a href="#" className="text-gray-400 mx-4 mb-4">YouTube</a>
-                        <a href="#" className="text-gray-400 mx-4 mb-4">LinkedIn</a>
-                    </div>
-                </div>
-            </footer>
+
         </div>
     );
 };

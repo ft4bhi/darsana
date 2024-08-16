@@ -63,7 +63,7 @@ const HeroCarousel: React.FC<HeroCarouselProps> = ({ slideData, autoPlay, interv
                     <div className="absolute inset-0 bg-black bg-opacity-40" />
                     <div className="absolute bottom-8 left-8 md:bottom-16 md:left-16 flex flex-col space-y-4">
                         <h1 className="text-4xl md:text-6xl font-bold text-white">{item.title}</h1>
-                        <p className="text-xl md:text-2xl text-white">{item.subtitle}</p>
+                        {/* <p className="text-xl md:text-2xl text-white">{item.subtitle}</p> */}
                         <div className="flex space-x-4">
                             <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
                                 Play Video
