@@ -10,7 +10,7 @@ import {
 } from 'drizzle-orm/pg-core';
 
 // Define an enum for the chapter field
-const chapterEnum = pgEnum('chapter', ['banglore', 'kerala', 'uae', 'america']);
+const chapterEnum = pgEnum('chapter', ['banglore', 'palkkad', 'uae', 'north america','calicut','oman','saudi']);
 
 export const gallery = pgTable('gallery', {
   id: serial('id').primaryKey(),
