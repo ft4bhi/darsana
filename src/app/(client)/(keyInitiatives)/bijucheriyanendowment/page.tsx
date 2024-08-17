@@ -1,30 +1,35 @@
 import React from 'react';
-import Biju_Cherian_Endowment from "@/assets/initiatives/Biju_Cherian_Endowment.png"
+import Image from 'next/image';
+import Biju_Cherian_Endowment from "@/assets/initiatives/Biju_Cherian_Endowment.png";
 
 const AwardPage: React.FC = () => {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.header}>Prabakaran Memorial Best Project Award</h1>
-      <div style={styles.imageContainer}>
-        <img
+    <div className="min-h-screen bg-white flex flex-col items-center p-6">
+      <h1 className="text-4xl font-extrabold text-center text-black mb-8">
+        Prabakaran Memorial Best Project Award
+      </h1>
+      <div className="flex justify-center mb-8">
+        <Image
           src={Biju_Cherian_Endowment.src}
           alt="Award Presentation"
-          style={styles.image}
+          width={700}  // Adjusted width for centering
+          height={400}  // Adjusted height for proper aspect ratio
+          className="rounded-lg shadow-lg"
         />
       </div>
-      <div style={styles.content}>
-        <p>
+      <div className="bg-white p-6 rounded-lg shadow-md text-gray-700 leading-relaxed w-full max-w-4xl">
+        <p className="mb-4">
           The annual general body of Darsana held in 2010, in line with its ideological commitment to promote
           "Technology for the betterment of society", decided to establish an award for the most socially relevant
           project from the final year projects of NSSCE students.
         </p>
-        <p>
+        <p className="mb-4">
           The award was established in honor of Sri Prabhakaran, one of our deceased members. The Prabhakaran Award
           comprises of cash prize and a Certificate. The annual award money is accrued as interest on a fixed deposit
           made just for this use.
         </p>
-        <p>Darsana will also extend support to the winners in any of the following:</p>
-        <ol>
+        <p className="mb-4">Darsana will also extend support to the winners in any of the following:</p>
+        <ol className="list-decimal ml-8 mb-4">
           <li>Publishing their idea as a research paper</li>
           <li>Patenting the idea</li>
           <li>Setting a startup to develop the idea into a commercial venture</li>
@@ -33,17 +38,17 @@ const AwardPage: React.FC = () => {
             contest.
           </li>
         </ol>
-        <p>
+        <p className="mb-4">
           There were 41 projects which were registered for the Prabhakaran Award 2024. Interim Review of these projects
           were done on 12th, 13th, 14th, and 19th February evenings. 26 groups presented their projects.
         </p>
-        <p>
+        <p className="mb-4">
           The presentation included about 5 powerpoint slides, a high-level summary of the project and the current
           progress. These were reviewed by 9 judges. All from UAE members. The judges provided their feedback and
           sometimes discussed with the students about the prospects and scopes for improvements. Coordinator Dr. Sajeesh
           provided all required coordinations with the student teams.
         </p>
-        <p>
+        <p className="mb-4">
           A Jotform was shared to the judges. Judges marked their marks instantly in the online form upon completion of
           the presentations. This process took about a minute only. Committee plans to implement the same during the
           final evaluation. This will help to announce the winner faster.
@@ -55,34 +60,6 @@ const AwardPage: React.FC = () => {
       </div>
     </div>
   );
-};
-
-const styles = {
-  container: {
-    fontFamily: 'Arial, sans-serif',
-    margin: '0 auto',
-    padding: '20px',
-    maxWidth: '800px',
-    backgroundColor: '#f4f4f4',
-    color: '#333',
-  },
-  header: {
-    textAlign: 'center' as 'center',
-    color: '#333',
-  },
-  imageContainer: {
-    textAlign: 'center' as 'center',
-    margin: '20px 0',
-  },
-  image: {
-    maxWidth: '100%',
-    height: 'auto',
-  },
-  content: {
-    backgroundColor: '#fff',
-    padding: '20px',
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)',
-  },
 };
 
 export default AwardPage;
