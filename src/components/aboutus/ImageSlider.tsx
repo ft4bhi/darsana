@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import DarsanaEngineers from 'src/assets/aboutus/DarsanaEngineers.png';
 import aboutimg2 from 'src/assets/aboutus/aboutimg2.jpeg';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const ImageSlider: React.FC = () => {
   const images = [
-    { src: aboutimg2.src, alt: 'Another Image 1' },
-    { src: DarsanaEngineers.src, alt: 'Darsana Engineers' },
+    { src: aboutimg2.src, alt: 'Another Image 1', width: 800, height: 500 },
+    { src: DarsanaEngineers.src, alt: 'Darsana Engineers', width: 800, height: 500 },
   ];
 
   const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
@@ -30,16 +31,20 @@ const ImageSlider: React.FC = () => {
   };
 
   return (
-    <div className="relative mb-8 flex justify-center items-center max-w-2xl mx-auto">
+    <div className="relative mb-8 flex justify-center items-center max-w-2xl mx-auto" style={{ width: '800px', height: '500px' }}>
       <FaArrowLeft
         className="absolute left-4 cursor-pointer text-white text-2xl z-10"
         onClick={handlePrevClick}
       />
-      <img
-        src={images[currentImageIndex].src}
-        alt={images[currentImageIndex].alt}
-        className="object-cover w-full h-auto"
-      />
+      <div className="relative w-full h-full">
+        <Image
+          src={images[currentImageIndex].src}
+          alt={images[currentImageIndex].alt}
+          layout="fill"
+          objectFit="cover"
+          className="object-cover"
+        />
+      </div>
       <FaArrowRight
         className="absolute right-4 cursor-pointer text-white text-2xl z-10"
         onClick={handleNextClick}

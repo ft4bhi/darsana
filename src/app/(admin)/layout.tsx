@@ -11,7 +11,7 @@ const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col h-screen">
       {/* TopBar */}
-      <TopBar />
+      {/* <TopBar /> */}
 
       <div className="flex flex-1">
         {/* Sidebar */}
