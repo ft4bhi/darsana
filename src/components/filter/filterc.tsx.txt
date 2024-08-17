@@ -1,4 +1,3 @@
-// components/Filter.tsx
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -7,27 +6,29 @@ import { format } from 'date-fns';
 import './Filter.css';
 
 interface FilterProps {
-  onFilterChange: (filters: { month: string; year: string; category: string; search: string }) => void;
+  onFilterChange: (filters: { month: string; year: string; category: string; search: string; chapter: string }) => void;
 }
 
 const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
   const [date, setDate] = useState<Date | null>(null);
   const [category, setCategory] = useState<string>('');
   const [search, setSearch] = useState<string>('');
+  const [chapter, setChapter] = useState<string>(''); // New state for chapter
 
   // Reset all filter criteria
   const handleReset = () => {
     setDate(null);
     setCategory('');
     setSearch('');
-    onFilterChange({ month: '', year: '', category: '', search: '' });
+    setChapter('');
+    onFilterChange({ month: '', year: '', category: '', search: '', chapter: '' });
   };
 
   // Update filter criteria
   const handleChange = () => {
     const month = date ? format(date, 'MMMM') : '';
     const year = date ? format(date, 'yyyy') : '';
-    onFilterChange({ month, year, category, search });
+    onFilterChange({ month, year, category, search, chapter });
   };
 
   return (
@@ -47,7 +48,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
               setDate(date);
               const month = date ? format(date, 'MMMM') : '';
               const year = date ? format(date, 'yyyy') : '';
-              onFilterChange({ month, year, category, search });
+              onFilterChange({ month, year, category, search, chapter });
             }}
             dateFormat="MMMM yyyy"
             showMonthYearPicker
@@ -63,7 +64,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
             value={category}
             onChange={(e) => {
               setCategory(e.target.value);
-              onFilterChange({ month: date ? format(date, 'MMMM') : '', year: date ? format(date, 'yyyy') : '', category: e.target.value, search });
+              onFilterChange({ month: date ? format(date, 'MMMM') : '', year: date ? format(date, 'yyyy') : '', category: e.target.value, search, chapter });
             }}
             className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white"
           >
@@ -75,6 +76,25 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
           </select>
         </div>
 
+        {/* Chapter Selection Dropdown */}
+        <div className="flex-1">
+          <select
+            id="chapter"
+            value={chapter}
+            onChange={(e) => {
+              setChapter(e.target.value);
+              onFilterChange({ month: date ? format(date, 'MMMM') : '', year: date ? format(date, 'yyyy') : '', category, search, chapter: e.target.value });
+            }}
+            className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 bg-white"
+          >
+            <option value="">Chapter</option>
+            <option value="calicut">Calicut</option>
+            <option value="bengaluru">Bengaluru</option>
+            <option value="north-america">North America</option>
+            {/* Add more chapters as needed */}
+          </select>
+        </div>
+
         {/* Search Box for Title */}
         <div className="flex-1">
           <input
@@ -83,7 +103,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
             value={search}
             onChange={(e) => {
               setSearch(e.target.value);
-              onFilterChange({ month: date ? format(date, 'MMMM') : '', year: date ? format(date, 'yyyy') : '', category, search: e.target.value });
+              onFilterChange({ month: date ? format(date, 'MMMM') : '', year: date ? format(date, 'yyyy') : '', category, search: e.target.value, chapter });
             }}
             className="block w-full px-4 py-3 rounded-lg border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             placeholder="Search events"
