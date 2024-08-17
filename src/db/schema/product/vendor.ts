@@ -1,17 +1,14 @@
-import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
-import { sql } from '@vercel/postgres';
+import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';
 
 export const vendors = pgTable('vendors', {
   id: serial('id').primaryKey(),
-  name: text('name').notNull(),
-  companyname: text('comapny name').notNull(),
-  city: text('city').notNull(),
-  state: text('state').notNull(),
-  country: text('country').notNull(),
-  email: text('email').notNull(),
-  phone: text('phone').notNull(),
-  createdAt: timestamp('created_at').defaultNow(),
-  updatedAt: timestamp('updated_at').defaultNow(), 
+  firstName: varchar('first_name', { length: 100 }).notNull(),
+  companyName: varchar('company_name', { length: 255 }),
+  email: varchar('email', { length: 255 }).notNull(),
+  phoneNumber: varchar('phone_number', { length: 20 }),
+  city: varchar('city', { length: 100 }),
+  state: varchar('state', { length: 100 }),
+  country: varchar('country', { length: 100 }),
 });
 
 // Export types for insert and select
