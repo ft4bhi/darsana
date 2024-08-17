@@ -15,7 +15,7 @@ const EventCard: React.FC<EventCardProps> = ({ date, month, title, description }
   const day = eventDate.getUTCDate(); // Extracting the day
 
   return (
-    <div className="bg-blue-500 text-white rounded-lg p-6 h-full flex flex-col">
+    <div className="bg-blue-500 text-white rounded-lg p-6 h-full flex flex-col" style={{ borderRadius: '12px' }} >
       <div className="flex flex-col items-start mb-4">
         <p className="text-5xl font-bold mb-1">{day}</p>
         <p className="text-2xl font-semibold uppercase">{month}</p>

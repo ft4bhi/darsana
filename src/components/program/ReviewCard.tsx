@@ -18,7 +18,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
   category,
 }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-2xl p-4 w-[375px] mx-auto mt-8 relative min-h-[200px]"> {/* Fixed width and minimum height */}
+    <div className="bg-white border border-gray-200 rounded-lg shadow-2xl p-4 w-[375px] mx-auto mt-8 relative min-h-[200px]" style={{ borderRadius: '12px' }} > {/* Fixed width and minimum height */}
       <div className="absolute -top-8 left-4 w-20 h-20  "> {/* Adjusted size */}
         <div className="relative w-full  h-full">
           <Image
