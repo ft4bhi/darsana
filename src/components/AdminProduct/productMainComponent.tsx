@@ -2,7 +2,8 @@
 import React, { useState } from 'react';
 
 interface ProductProps {
-    price: string;
+    params: { productSlug: string };
+    title: string;
     type: string;
     material: string;
     design: string;
@@ -18,10 +19,13 @@ interface ProductProps {
     supplierContact: string;
     supplierEmail: string;
     description: string;
+    mainImage: string;
+    thumbnails: string[];
 }
 
 const ProductComponent: React.FC<ProductProps> = ({
-    price,
+    params,
+    title,
     type,
     material,
     design,
@@ -37,25 +41,18 @@ const ProductComponent: React.FC<ProductProps> = ({
     supplierContact,
     supplierEmail,
     description,
+    mainImage,
+    thumbnails,
 }) => {
-    const [mainImage, setMainImage] = useState("https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    const [currentImage, setCurrentImage] = useState(mainImage);
     const [quantity, setQuantity] = useState(1);
-
-    const thumbnails = [
-        "https://images.pexels.com/photos/1261422/pexels-photo-1261422.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        "https://images.pexels.com/photos/991509/pexels-photo-991509.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    ];
 
     return (
         <div className="flex flex-col w-full mx-auto p-5">
             <div className="flex mb-5">
                 <div className="w-1/2 pr-4">
                     <img
-                        src={mainImage}
+                        src={currentImage}
                         alt="Product Image"
                         className="w-full object-cover mb-2"
                     />
@@ -66,21 +63,13 @@ const ProductComponent: React.FC<ProductProps> = ({
                                 src={src}
                                 alt={`Thumbnail ${index + 1}`}
                                 className="w-12 h-12 object-cover cursor-pointer"
-                                onClick={() => setMainImage(src)}
+                                onClick={() => setCurrentImage(src)}
                             />
                         ))}
                     </div>
                 </div>
                 <div className="w-1/2 pl-4">
-                    <h2 className="text-2xl font-bold mb-4">Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle</h2>
-                    <div className="mb-4">
-                        <span className="font-bold">Your Price: </span>
-                        <span className="text-red-500 font-bold">{price}</span>
-                    </div>
-                    <div className="mb-4">
-                        <span className="font-bold">Part Number: </span>
-                        <span>7</span>
-                    </div>
+                    <h2 className="text-2xl font-bold mb-4">{title}</h2>
                     <div className="mb-4">
                         <span className="font-bold">Availability: </span>
                         <span className="text-green-500">In stock</span>
@@ -90,8 +79,9 @@ const ProductComponent: React.FC<ProductProps> = ({
                         <input
                             type="number"
                             value={quantity}
-                            onChange={(e) => setQuantity(parseInt(e.target.value))}
+                            onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value)))}
                             className="border border-gray-300 px-2 py-1 w-16 mr-2"
+                            min="1"
                         />
                         <button className="bg-orange-500 text-white px-4 py-2 rounded">
                             Add to Cart
@@ -108,46 +98,23 @@ const ProductComponent: React.FC<ProductProps> = ({
                     <div className="mb-5">
                         <table className="w-full border-collapse">
                             <tbody>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Type</td>
-                                    <td className="p-2 border-b border-gray-300">{type}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Material</td>
-                                    <td className="p-2 border-b border-gray-300">{material}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Design</td>
-                                    <td className="p-2 border-b border-gray-300">{design}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Customization</td>
-                                    <td className="p-2 border-b border-gray-300">{customization}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Protection</td>
-                                    <td className="p-2 border-b border-gray-300">{protection}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Warranty</td>
-                                    <td className="p-2 border-b border-gray-300">{warranty}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Model</td>
-                                    <td className="p-2 border-b border-gray-300">{model}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Style</td>
-                                    <td className="p-2 border-b border-gray-300">{style}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Certificate</td>
-                                    <td className="p-2 border-b border-gray-300">{certificate}</td>
-                                </tr>
-                                <tr>
-                                    <td className="p-2 border-b border-gray-300">Size</td>
-                                    <td className="p-2 border-b border-gray-300">{size}</td>
-                                </tr>
+                                {[
+                                    { label: "Type", value: type },
+                                    { label: "Material", value: material },
+                                    { label: "Design", value: design },
+                                    { label: "Customization", value: customization },
+                                    { label: "Protection", value: protection },
+                                    { label: "Warranty", value: warranty },
+                                    { label: "Model", value: model },
+                                    { label: "Style", value: style },
+                                    { label: "Certificate", value: certificate },
+                                    { label: "Size", value: size },
+                                ].map(({ label, value }) => (
+                                    <tr key={label}>
+                                        <td className="p-2 border-b border-gray-300">{label}</td>
+                                        <td className="p-2 border-b border-gray-300">{value}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
@@ -171,6 +138,3 @@ const ProductComponent: React.FC<ProductProps> = ({
 };
 
 export default ProductComponent;
-
-
-

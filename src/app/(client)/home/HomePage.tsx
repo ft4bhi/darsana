@@ -101,9 +101,11 @@ const HomePage: React.FC = () => {
             />
 
             {/* Featured Section */}
-            <Featured />
+            <div className="pb-20 bg-white">
+                <Featured />
+            </div>
+            {/* Footer Section */}
 
-           
         </div>
     );
 };
