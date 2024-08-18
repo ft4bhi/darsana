@@ -58,7 +58,7 @@ const ContentCard: React.FC<ContentCardProps> = ({
             <span>{date}</span>
             <span className="ml-1">{year}</span>
           </div>
-          <p className="ml-1 text-gray-500 text-sm">| {chapter} Chapter</p> 
+          <p className="ml-1 text-gray-500 text-sm">| {chapter}</p> 
         </div>
         <h2 className="mt-2 text-xl font-semibold text-gray-800">{title}</h2>
         <p className="mt-1 text-gray-600">{venue}</p>
