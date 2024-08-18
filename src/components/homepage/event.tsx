@@ -79,7 +79,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ events }) => {
   return (
     <section className="py-8 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-extrabold text-center mb-12">Events</h2>
+        <h2 className="text-4xl font-extrabold text-center mb-12"> UPCOMING E</h2>
         <div className="relative">
           <button
             onClick={handlePrev}
