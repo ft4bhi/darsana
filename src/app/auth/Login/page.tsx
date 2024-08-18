@@ -7,7 +7,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebookF, faMicrosoft, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-
+import loginheroimage from '@/assets/loginheroimage.png'
 const LoginPage = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -79,10 +79,10 @@ const LoginPage = () => {
           
           <div className="hidden lg:block lg:w-1/2 lg:pl-8">
             <Image
-              src="/login-hero-image.png"
-              alt="Login hero image"
-              width={688}
-              height={504}
+              src={loginheroimage}
+              alt="Loginimage"
+              width={900}
+              height={100}
               className="w-full h-auto object-cover rounded-lg"
             />
           </div>

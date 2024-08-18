@@ -4,11 +4,11 @@ import React from 'react';
 import { useParams } from 'next/navigation'; // Import useParams to get the event ID from the URL
 import { ImageComponent, EventDetails, FixedIcons } from '../../../../components/event/event'; // Adjust the path as needed
 import ReviewCard from '../../../../components/program/ReviewCard'; // Adjust the path as needed
-import BijuCherianScholarshipImage from 'src/assets/program/BijuCherianScholarship.jpg';
-import darsanaCommunityEventProgram from 'src/assets/program/darsanaCommunityEventProgram.jpg';
-import DarsanaHouseImage from 'src/assets/program/DarsanaHouseImage.jpg';
-import KolarGoldFieldprogram from 'src/assets/program/KolarGoldFieldprogram.png';
-import Profile from 'src/assets/program/Profile.png';
+import BijuCherianScholarshipImage from '@/assets/program/BijuCherianScholarship.jpg';
+import darsanaCommunityEventProgram from '@/assets/program/darsanaCommunityEventProgram.jpg';
+import DarsanaHouseImage from '@/assets/program/DarsanaHouseImage.png';
+import KolarGoldFieldprogram from '@/assets/program/KolarGoldFieldprogram.png';
+import Profile from '@/assets/program/Profile.png';
 // Define the type for review data
 type Review = {
   profileImage: string;

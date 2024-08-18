@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import ContentCard from '../../../components/program/ContentCard';
 import Filter from '../../../components/filter/filterc'; 
-import BijuCherianScholarshipImage from 'src/assets/program/BijuCherianScholarship.jpg';
-import darsanaCommunityEventProgram from 'src/assets/program/darsanaCommunityEventProgram.jpg';
-import DarsanaHouseImage from 'src/assets/program/DarsanaHouseImage.jpg';
-import KolarGoldFieldprogram from 'src/assets/program/KolarGoldFieldprogram.png';
+import BijuCherianScholarshipImage from '@/assets/program/BijuCherianScholarship.jpg';
+import darsanaCommunityEventProgram from '@/assets/program/darsanaCommunityEventProgram.jpg';
+import DarsanaHouseImage from '@/assets/program/DarsanaHouseImage.png';
+import KolarGoldFieldprogram from '@/assets/program/KolarGoldFieldprogram.png';
 
 const Programs: React.FC = () => {
   const [filters, setFilters] = useState({
