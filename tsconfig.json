@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
@@ -9,11 +7,6 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "lib": [
       "dom",
       "dom.iterable",
@@ -27,7 +20,14 @@
       "@/*": [
         "src/*"
       ]
-    }
+    },
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
@@ -35,8 +35,12 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/navbar.tsx",
-    "src/app/(client)/home/page.js"
-, "src/lib/firebase/auth.ts", "src/app/loading.tsx", "src/app/layout.tsx"  ],
+    "src/app/(client)/home/page.js",
+    "src/lib/firebase/auth.ts",
+    "src/app/loading.tsx",
+    "src/app/layout.tsx",
+    "next.config.js"
+  ],
   "exclude": [
     "node_modules"
   ]

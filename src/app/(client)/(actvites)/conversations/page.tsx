@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react';
-import Filter from '../../components/filter/filterc'; // Adjust the import path as necessary
-import EventCard from '../../components/conversation/card'; // Adjust the import path as necessary
+import Filter from '@/components/filter/filterc'; // Adjust the import path as necessary
+import EventCard from '@/components/conversation/card'; // Adjust the import path as necessary
 
 const EventsPage: React.FC = () => {
   const [filters, setFilters] = useState<{ month: string; year: string; category: string; search: string; chapter: string }>({

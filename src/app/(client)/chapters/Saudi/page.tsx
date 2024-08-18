@@ -1,9 +1,9 @@
 import React, { Suspense, useCallback } from 'react';
 import Profile from 'src/assets/chapter/Profile.png'; 
-import ContactInfoCard from '@/components/contactinfo/ContactInfoCard';
+import ChapterCard from '@/components/chapter/chapterCard';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import Image from 'next/image';
-import saudichapter from "../../../../assets/chapter/noimage.png";
+import saudichapter from "../../../../assets/chapter/saudichapter.png";
 
 
 const ReviewCard = React.lazy(() => import('@/components/program/ReviewCard'));
@@ -94,17 +94,17 @@ const SaudiChapter: React.FC = () => {
       <section className="contact-info-section mb-10 w-full">
         <h2 className="text-2xl font-bold text-center mb-6">Contact Us</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <ContactInfoCard
+          <ChapterCard
             icon={<FaEnvelope />}
             title="Email"
             description="saudi.chapter@example.com"
           />
-          <ContactInfoCard
+          <ChapterCard
             icon={<FaPhone />}
             title="Phone"
             description="+966 123 456 789"
           />
-          <ContactInfoCard
+          <ChapterCard
             icon={<FaMapMarkerAlt />}
             title="Address"
             description="123 Darsana Street, Riyadh, Saudi Arabia"

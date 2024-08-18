@@ -4,8 +4,8 @@ import ChapterCard from "../../../components/chapter/chapterCard";
 import Bangalorechapter from "../../../assets/chapter/bangalorechapterheroimage.png";
 import palkkadchapter from "../../../assets/chapter/palkkadchapterheroimage.png";
 import Omanchapter from "../../../assets/chapter/Omanchapterheroimage.png";
-import saudichapter from "../../../assets/chapter/noimage.png";
-import NorthAmericachapter from "../../../assets/chapter/noimage.png";
+import saudichapter from "../../../assets/chapter/saudichapter.png";
+import NorthAmericachapter from "../../../assets/chapter/saudichapter.png";
 import uaechapter from "../../../assets/chapter/uaechapter.png";
 import calicutchapter from "../../../assets/chapter/calicutchapter.png";
 
