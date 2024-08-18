@@ -1,16 +1,17 @@
+// app/(admin)/layout.tsx
 import React, { ReactNode } from 'react';
-import TopBar from '@/components/admin/TopBar'; // Adjust the import path as needed
-import Sidebar from '@/components/admin/SideBar'; // Adjust the import path as needed
+import TopBar from '@/components/admin/TopBar';
+import Sidebar from '@/components/admin/SideBar';
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => {
+const AdminLayout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="flex flex-col h-screen">
       {/* TopBar */}
-      <TopBar />
+      {/* <TopBar /> */}
 
       <div className="flex flex-1">
         {/* Sidebar */}
@@ -25,4 +26,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export default Layout;
+export default AdminLayout;
