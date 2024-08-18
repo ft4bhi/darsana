@@ -1,3 +1,4 @@
+'use client'
 import Home from "@/app/(client)/home/HomePage";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
