@@ -1,34 +1,63 @@
-// data/products.ts
-import { Product } from './types';
+// src\components\product\data\ProductData.ts
+
+import productImage1 from '@/assets/product/productpage01.png';
+import { StaticImageData } from 'next/image';
+
+export interface Product {
+    id: number;
+    title: string;
+    imageUrl: StaticImageData;
+    description: string;
+    mainImage: StaticImageData;
+    thumbnails: StaticImageData[];
+    link: string;
+
+    // price: string;
+    type: string;
+    material: string;
+    design: string;
+    customization: string;
+    protection: string;
+    warranty: string;
+    supplierName: string;
+    supplierAddress: string;
+    supplierContact: string;
+    supplierEmail: string;
+
+    model: string;          // New property
+    style: string;          // New property
+    // certificate: string;    // New property
+    size: string;           // New property
+}
+
 export const products: Product[] = [
     {
-        title: "Classic Leather Watch",
-        imageUrl: "/images/1.jpg",
-        price: "$129.99",
-        description: "A timeless leather watch with a classic design, perfect for any occasion.",
+        id: 1,
+        title: "Mens Long Sleeve T-shirt Cotton Base Layer Slim Muscle",
+        imageUrl: productImage1,
+        description: "A comfortable and stylish long sleeve T-shirt perfect for everyday wear.",
+        mainImage: productImage1,
+        thumbnails: [productImage1, productImage1, productImage1],
+        link: "mens-long-sleeve-tshirt",
+
+        // price: "Negotiable",
+        type: "Classic shoes",
+        material: "Plastic material",
+        design: "Modern rise",
+        customization: "Customized logo and design custom packages",
+        protection: "Refund Policy",
+        warranty: "2 years full warranty",
+        supplierName: "Gunjold Trading LLC",
+        supplierAddress: "Raalkkad, Kerala, India",
+        supplierContact: "+91 9999999999",
+        supplierEmail: "ShadilRayan@gmail.com",
+
+        // New properties
+        model: "2024 Model",
+        style: "Casual",
+        // certificate: "ISO 9001 Certified",
+        size: "Medium"
     },
-    {
-        title: "Wireless Bluetooth Headphones",
-        imageUrl: "/images/2.jpg",
-        price: "$89.99",
-        description: "High-quality wireless Bluetooth headphones with noise-cancellation and long battery life.",
-    },
-    {
-        title: "Modern Office Desk",
-        imageUrl: "/images/3.jpg",
-        price: "$299.99",
-        description: "Sleek and modern office desk with ample storage and a minimalist design.",
-    },
-    {
-        title: "Eco-Friendly Water Bottle",
-        imageUrl: "/images/4.jpg",
-        price: "$24.99",
-        description: "Durable and eco-friendly water bottle made from sustainable materials.",
-    },
-    {
-        title: "Ergonomic Office Chair",
-        imageUrl: "/images/6.jpg",
-        price: "$189.99",
-        description: "Ergonomic office chair designed for maximum comfort and support during long work hours.",
-    },
+    // Add other products similarly
 ];
+

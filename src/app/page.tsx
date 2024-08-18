@@ -1,8 +1,23 @@
-import React from 'react';
-import HomePage from './(client)/home/HomePage';
+'use client'
+import Home from "@/app/(client)/home/HomePage";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 
 const page = () => {
-  return <HomePage />;
-}
+  return(
+    <>
+    <Navbar />
+    <Home />
+    <Footer />
+    
+    </>
+
+
+
+  ) 
+};
 
 export default page;
+
+
+
