@@ -1,12 +1,14 @@
-// src\db\index.ts
 import { sql } from '@vercel/postgres';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
 import { config } from 'dotenv';
 
-config({ path: '.env.development.local' }); // or .env
+// Load environment variables from .env.development.local or .env
+config({ path: '.env.local' }); // or .env
 
+// Initialize the Drizzle ORM with Vercel Postgres
 export const db = drizzle(sql);
 
+// Function to test the database connection
 export async function testConnection() {
   try {
     const result = await sql`SELECT NOW()`;

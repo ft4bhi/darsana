@@ -1,3 +1,5 @@
+// src\db\schema\product\vendor.ts
+
 import { pgTable, serial, varchar } from 'drizzle-orm/pg-core';
 
 export const vendors = pgTable('vendors', {

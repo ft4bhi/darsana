@@ -1,4 +1,4 @@
-// page.tsx
+// src\app\(admin)\products\add\page.tsx
 import React from 'react';
 import AddProductForm from '@/components/AdminProduct/AddProductForm';
 
