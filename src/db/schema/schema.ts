@@ -11,11 +11,11 @@ export * from './home/upcomingevent';
 // export * from './Activites/Program/program_detail';
 // export * from './Activites/Program/program_review';
 
-// export * from './product/product';
+export * from './product/products';
 // export * from './product/productcategory';
 // export * from './product/productdetail';
 // export * from './product/productdisplay';
-// export * from './product/vendor';
+
 
 
 // export * from './scholarship/applicant';

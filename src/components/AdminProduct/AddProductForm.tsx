@@ -1,49 +1,50 @@
-// AddProductForm.tsx
 "use client";
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-const AddProductForm: React.FC = () => {
-    const [productTitle, setProductTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [companyName, setCompanyName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-    const [city, setCity] = useState('');
-    const [state, setState] = useState('');
-    const [location, setLocation] = useState('');
-    const [category, setCategory] = useState('');
-    const [customFields, setCustomFields] = useState({
-        type1: '', type2: '', material: '', design: '', type3: '', type4: ''
+interface ProductFormData {
+    title: string;
+    description: string;
+    category: string;
+    typeValuePairs: string; // Assuming JSON is passed as a string
+    firstName: string;
+    companyName: string;
+    email: string;
+    phoneNumber: string;
+    city: string;
+    state: string;
+    country: string;
+    vendorId: number;
+}
+
+const ProductForm = () => {
+    const [formData, setFormData] = useState<ProductFormData>({
+        title: '',
+        description: '',
+        category: '',
+        typeValuePairs: '',
+        firstName: '',
+        companyName: '',
+        email: '',
+        phoneNumber: '',
+        city: '',
+        state: '',
+        country: '',
+        vendorId: 0,
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitMessage, setSubmitMessage] = useState('');
 
-    const handleCustomFieldChange = (field: string, value: string) => {
-        setCustomFields(prev => ({ ...prev, [field]: value }));
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitMessage('');
-
-        const formData = {
-            productTitle,
-            description,
-            firstName,
-            companyName,
-            email,
-            phoneNumber,
-            city,
-            state,
-            location,
-            category,
-            ...customFields
-        };
 
         try {
-            const response = await fetch('/api/addProduct', {
+            const response = await fetch('/api/addproduct', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,175 +52,167 @@ const AddProductForm: React.FC = () => {
                 body: JSON.stringify(formData),
             });
 
+            const result = await response.json();
             if (response.ok) {
-                setSubmitMessage('Product added successfully');
-                // Reset form fields here if needed
+                alert('Product added successfully');
+                console.log(result);
             } else {
-                setSubmitMessage('Failed to add product. Please try again.');
+                alert('Failed to add product');
+                console.error(result);
             }
         } catch (error) {
-            console.error('Error submitting form:', error);
-            setSubmitMessage('An error occurred. Please try again later.');
-        } finally {
-            setIsSubmitting(false);
+            alert('An error occurred');
+            console.error(error);
         }
     };
 
     return (
-        <div className="flex flex-col md:flex-row gap-6 p-6 bg-white rounded-lg shadow">
-            <div className="flex-1">
-                <h2 className="text-xl font-bold mb-4">Add Product</h2>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label className="block mb-2">Product title</label>
-                        <input
-                            type="text"
-                            value={productTitle}
-                            onChange={(e) => setProductTitle(e.target.value)}
-                            className="w-full p-2 border rounded"
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Full description</label>
-                        <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            className="w-full p-2 border rounded"
-                            rows={4}
-                            required
-                        />
-                    </div>
-                    <div className="grid grid-cols-3 gap-2 mb-4">
-                        {Object.entries(customFields).map(([field, value]) => (
-                            <div key={field} className="flex flex-col">
-                                <input
-                                    type="text"
-                                    value={value}
-                                    onChange={(e) => handleCustomFieldChange(field, e.target.value)}
-                                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                                    className="w-full p-2 border rounded mb-1"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <label className="block mb-2">First Name</label>
-                            <input
-                                type="text"
-                                value={firstName}
-                                onChange={(e) => setFirstName(e.target.value)}
-                                className="w-full p-2 border rounded"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-2">City</label>
-                            <input
-                                type="text"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                                className="w-full p-2 border rounded"
-                                required
-                            />
-                        </div>
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">Company Name</label>
-                        <input
-                            type="text"
-                            value={companyName}
-                            onChange={(e) => setCompanyName(e.target.value)}
-                            className="w-full p-2 border rounded"
-                            required
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block mb-2">State</label>
-                        <input
-                            type="text"
-                            value={state}
-                            onChange={(e) => setState(e.target.value)}
-                            className="w-full p-2 border rounded"
-                            required
-                        />
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                        <div>
-                            <label className="block mb-2">Email</label>
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                className="w-full p-2 border rounded"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-2">Phone Number</label>
-                            <input
-                                type="tel"
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
-                                className="w-full p-2 border rounded"
-                                required
-                            />
-                        </div>
-                        <div>
-                            <label className="block mb-2">Location</label>
-                            <input
-                                type="text"
-                                value={location}
-                                onChange={(e) => setLocation(e.target.value)}
-                                className="w-full p-2 border rounded"
-                                required
-                            />
-                        </div>
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white py-2 px-4 rounded mt-4"
-                        disabled={isSubmitting}
-                    >
-                        {isSubmitting ? 'Saving...' : 'Save'}
-                    </button>
-                    {submitMessage && (
-                        <p className={`mt-2 ${submitMessage.includes('successfully') ? 'text-green-600' : 'text-red-600'}`}>
-                            {submitMessage}
-                        </p>
-                    )}
-                </form>
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
             </div>
-            <div className="w-full md:w-1/3">
-                <h2 className="text-xl font-bold mb-4">Media</h2>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
-                    <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <button className="mt-2 px-4 py-2 bg-gray-200 rounded">Choose File</button>
-                    <p className="mt-1 text-sm text-gray-500">No file chosen</p>
-                </div>
-                <div className="mt-4">
-                    <label className="block mb-2">Category</label>
-                    <select
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        className="w-full p-2 border rounded"
-                        required
-                    >
-                        <option value="">Select a category</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="clothing">Clothing</option>
-                        <option value="books">Books</option>
-                        {/* Add more categories as needed */}
-                    </select>
-                </div>
+
+            <div>
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
             </div>
-        </div>
+
+            <div>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+                <input
+                    type="text"
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="typeValuePairs" className="block text-sm font-medium text-gray-700">Type Value Pairs (JSON)</label>
+                <textarea
+                    id="typeValuePairs"
+                    name="typeValuePairs"
+                    value={formData.typeValuePairs}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">Company Name</label>
+                <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="state" className="block text-sm font-medium text-gray-700">State</label>
+                <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+
+
+            <button
+                type="submit"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
+                Submit
+            </button>
+        </form>
     );
 };
 
-export default AddProductForm;
-
-
+export default ProductForm;
