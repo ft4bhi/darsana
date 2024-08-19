@@ -1,4 +1,5 @@
-// AddProductForm.tsx
+// src\components\AdminProduct\AddProductForm.tsx
+
 "use client";
 import React, { useState } from 'react';
 
@@ -13,14 +14,25 @@ const AddProductForm: React.FC = () => {
     const [state, setState] = useState('');
     const [location, setLocation] = useState('');
     const [category, setCategory] = useState('');
-    const [customFields, setCustomFields] = useState({
-        type1: '', type2: '', material: '', design: '', type3: '', type4: ''
-    });
+    const [customFields, setCustomFields] = useState<{ type: string; value: string }[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState('');
 
-    const handleCustomFieldChange = (field: string, value: string) => {
-        setCustomFields(prev => ({ ...prev, [field]: value }));
+    const handleAddCustomField = () => {
+        if (customFields.length < 6) {
+            setCustomFields([...customFields, { type: '', value: '' }]);
+        } else {
+            alert('You can add up to six custom fields only.');
+        }
+    };
+
+    const handleCustomFieldChange = (index: number, field: string, value: string) => {
+        const updatedFields = customFields.map((cf, i) => i === index ? { ...cf, [field]: value } : cf);
+        setCustomFields(updatedFields);
+    };
+
+    const handleRemoveCustomField = (index: number) => {
+        setCustomFields(customFields.filter((_, i) => i !== index));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -39,11 +51,11 @@ const AddProductForm: React.FC = () => {
             state,
             location,
             category,
-            ...customFields
+            customFields, // Send the custom fields as an array of objects
         };
 
         try {
-            const response = await fetch('/api/addProduct', {
+            const response = await fetch('/api/PostProduct', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,16 +102,41 @@ const AddProductForm: React.FC = () => {
                             required
                         />
                     </div>
-                    <div className="grid grid-cols-3 gap-2 mb-4">
-                        {Object.entries(customFields).map(([field, value]) => (
-                            <div key={field} className="flex flex-col">
+                    <div className="mb-4">
+                        <button
+                            type="button"
+                            onClick={handleAddCustomField}
+                            className="bg-blue-500 text-white py-2 px-4 rounded"
+                        >
+                            Add Custom Field
+                        </button>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4 mb-4">
+                        {customFields.map((field, index) => (
+                            <div key={index} className="flex flex-col md:flex-row gap-2">
                                 <input
                                     type="text"
-                                    value={value}
-                                    onChange={(e) => handleCustomFieldChange(field, e.target.value)}
-                                    placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                                    className="w-full p-2 border rounded mb-1"
+                                    value={field.type}
+                                    onChange={(e) => handleCustomFieldChange(index, 'type', e.target.value)}
+                                    placeholder="Type"
+                                    className="flex-1 p-2 border rounded"
+                                    required
                                 />
+                                <input
+                                    type="text"
+                                    value={field.value}
+                                    onChange={(e) => handleCustomFieldChange(index, 'value', e.target.value)}
+                                    placeholder="Value"
+                                    className="flex-1 p-2 border rounded"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveCustomField(index)}
+                                    className="bg-red-500 text-white py-2 px-4 rounded"
+                                >
+                                    Remove
+                                </button>
                             </div>
                         ))}
                     </div>
@@ -221,5 +258,3 @@ const AddProductForm: React.FC = () => {
 };
 
 export default AddProductForm;
-
-
