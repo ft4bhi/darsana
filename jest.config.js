@@ -1,8 +1,8 @@
+// jest.config.js
 module.exports = {
-    preset: 'ts-jest',
-    testEnvironment: 'jsdom',
-    setupFilesAfterEnv: ['@testing-library/jest-dom'],
-    transform: {
-      '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
-    },
-  };
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['@testing-library/jest-dom'],
+  transform: {
+    '^.+\\.(js|jsx|ts|tsx)$': ['@swc/jest'],
+  },
+};

@@ -1,10 +1,30 @@
-import type { NextPage } from 'next';
+"use client";
+
+import { useRouter } from 'next/navigation';
+import { signInWithGoogle } from '@/lib/firebase/auth'; // Make sure this function handles sign-in correctly
+import { useState } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle, faFacebookF, faMicrosoft, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import loginheroimage from '@/assets/loginheroimage.png'
+const LoginPage = () => {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
 
-const LoginPage: NextPage = () => {
+  const handleLoginWithGoogle = async () => {
+    try {
+      const userUid = await signInWithGoogle();
+      if (userUid) {
+        // Redirect to admin dashboard for all users
+        router.push('/dashboard');
+      }
+    } catch (err) {
+      console.error('Failed to log in with Google:', err);
+      setError('Failed to log in with Google');
+    }
+  };
+
   return (
     <>
       <Head>
@@ -25,17 +45,22 @@ const LoginPage: NextPage = () => {
             <h1 className="text-4xl sm:text-5xl font-semibold mb-4 text-gray-900">Welcome to Darsana</h1>
             <p className="text-xl sm:text-2xl text-gray-600 mb-8">We hope you will enjoy your scrolling with us</p>
             
+            {error && <p className="text-red-500">{error}</p>}
+
             <div className="space-y-4 max-w-md mx-auto lg:mx-0">
-              <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 transition duration-300">
+              <button
+                onClick={handleLoginWithGoogle}
+                className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 transition duration-300"
+              >
                 <FontAwesomeIcon icon={faGoogle} className="w-5 h-5" />
                 <span>Continue with Google</span>
               </button>
-              
+
               <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 transition duration-300">
                 <FontAwesomeIcon icon={faFacebookF} className="w-5 h-5" />
                 <span>Continue with Facebook</span>
               </button>
-              
+
               <button className="w-full flex items-center justify-center space-x-2 py-3 px-4 border border-gray-300 rounded-full text-gray-700 hover:bg-gray-50 transition duration-300">
                 <FontAwesomeIcon icon={faMicrosoft} className="w-5 h-5" />
                 <span>Continue with Microsoft</span>
@@ -54,10 +79,10 @@ const LoginPage: NextPage = () => {
           
           <div className="hidden lg:block lg:w-1/2 lg:pl-8">
             <Image
-              src="/login-hero-image.png"
-              alt="Login hero image"
-              width={688}
-              height={504}
+              src={loginheroimage}
+              alt="Loginimage"
+              width={900}
+              height={100}
               className="w-full h-auto object-cover rounded-lg"
             />
           </div>

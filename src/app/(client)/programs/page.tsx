@@ -2,20 +2,22 @@
 
 import React, { useState } from 'react';
 import ContentCard from '../../../components/program/ContentCard';
-import Filter from '../../../components/filter/Filter'; // Import the Filter component
-import BijuCherianScholarshipImage from 'src/assets/program/BijuCherianScholarship.jpg';
-import darsanaCommunityEventProgram from 'src/assets/program/darsanaCommunityEventProgram.jpg';
-import DarsanaHouseImage from 'src/assets/program/DarsanaHouseImage.jpg';
-import KolarGoldFieldprogram from 'src/assets/program/KolarGoldFieldprogram.png';
+import Filter from '../../../components/filter/filterc'; 
+import BijuCherianScholarshipImage from '@/assets/program/BijuCherianScholarship.jpg';
+import darsanaCommunityEventProgram from '@/assets/program/darsanaCommunityEventProgram.jpg';
+import DarsanaHouseImage from '@/assets/program/DarsanaHouseImage.png';
+import KolarGoldFieldprogram from '@/assets/program/KolarGoldFieldprogram.png';
+
 const Programs: React.FC = () => {
   const [filters, setFilters] = useState({
     month: '',
     year: '',
     category: '',
     search: '',
+    chapter: '', 
   });
 
-  // Sample data with id and category included
+  // Sample data with chapter included
   const sampleData = [
     {
       id: '1',
@@ -27,6 +29,7 @@ const Programs: React.FC = () => {
       venue: '',
       time: '10:00 AM - 4:00 PM',
       category: 'Scholarship',
+      chapter: '', 
     },
     {
       id: '2',
@@ -38,6 +41,7 @@ const Programs: React.FC = () => {
       venue: '',
       time: '11:00 AM - 3:00 PM',
       category: 'Support',
+      chapter: 'North-America', 
     },
     {
       id: '3',
@@ -49,6 +53,7 @@ const Programs: React.FC = () => {
       venue: '',
       time: '10:00 AM - 4:00 PM',
       category: 'House Construction',
+      chapter: 'Palakkad', 
     },
     {
       id: '4',
@@ -60,6 +65,7 @@ const Programs: React.FC = () => {
       venue: '',
       time: '11:00 AM - 3:00 PM',
       category: 'Support',
+      chapter: 'bengaluru', 
     },
     // Add more data as needed
   ];
@@ -70,8 +76,9 @@ const Programs: React.FC = () => {
     const yearMatch = filters.year ? item.year === filters.year : true;
     const categoryMatch = filters.category ? item.category.toLowerCase() === filters.category.toLowerCase() : true;
     const searchMatch = filters.search ? item.title.toLowerCase().includes(filters.search.toLowerCase()) : true;
+    const chapterMatch = filters.chapter ? item.chapter.toLowerCase() === filters.chapter.toLowerCase() : true; // Added chapter match
 
-    return dateMatch && yearMatch && categoryMatch && searchMatch;
+    return dateMatch && yearMatch && categoryMatch && searchMatch && chapterMatch;
   });
 
   return (

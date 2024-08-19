@@ -1,7 +1,7 @@
 import { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import darsanaLogo from '@/assets/home/darsanaLogo.png';
+import darsanaLogo from '@/assets/darsanaLogo.png';
 
 const Footer = memo(() => {
     return (

@@ -14,17 +14,20 @@ const EventCard: React.FC<EventCardProps> = ({ date, month, title, description }
   const eventDate = new Date(date);
   const day = eventDate.getUTCDate(); // Extracting the day
 
-  return (
+   return (
     <div className="bg-blue-500 text-white rounded-lg p-6 h-full flex flex-col" style={{ borderRadius: '12px' }} >
-      <div className="flex flex-col items-start mb-4">
-        <p className="text-5xl font-bold mb-1">{day}</p>
-        <p className="text-2xl font-semibold uppercase">{month}</p>
+      <div className="flex  items-right ">
+        <div className="flex flex-col mr-7 items-start ">
+        <p className="text-3xl font-bold mb-1">{day}</p>
+        <p className="text-xl font-semibold uppercase">{month}</p>
       </div>
-      <h3 className="text-lg font-bold text-center mt-auto">{title}</h3>
-      <p className="text-sm text-center mt-2">{description}</p>
+      <h3 className="text-xl font-bold text-center flex items-center">{title}</h3>
+      </div>
+      <p className="text-sm text-left mt-2">{description}</p>
     </div>
   );
 };
+
 
 interface EventCarouselProps {
   events: EventItem[];
@@ -79,7 +82,7 @@ const EventCarousel: React.FC<EventCarouselProps> = ({ events }) => {
   return (
     <section className="py-8 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-extrabold text-center mb-12">Events</h2>
+        <h2 className="text-4xl font-extrabold text-center mb-12"> UPCOMING E</h2>
         <div className="relative">
           <button
             onClick={handlePrev}

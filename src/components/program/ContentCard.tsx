@@ -22,6 +22,7 @@ interface ContentCardProps {
   venue: string;
   time: string;
   category: string;
+  chapter: string; // Added chapter property
 }
 
 const ContentCard: React.FC<ContentCardProps> = ({
@@ -34,6 +35,7 @@ const ContentCard: React.FC<ContentCardProps> = ({
   venue,
   time,
   category,
+  chapter, // Added chapter property
 }) => {
   return (
     <div className="bg-white border border-gray-300 rounded-lg shadow-lg overflow-hidden w-full max-w-lg">
@@ -56,11 +58,13 @@ const ContentCard: React.FC<ContentCardProps> = ({
             <span>{date}</span>
             <span className="ml-1">{year}</span>
           </div>
+          <p className="ml-1 text-gray-500 text-sm">| {chapter}</p> 
         </div>
         <h2 className="mt-2 text-xl font-semibold text-gray-800">{title}</h2>
         <p className="mt-1 text-gray-600">{venue}</p>
         <p className="mt-1 text-gray-500 text-sm">{time}</p>
         <p className="mt-2 text-gray-600">{description}</p>
+        
         <Link href={`/events/${id}`} className="text-blue-500 mt-4 inline-block">
           Read More
         </Link>
