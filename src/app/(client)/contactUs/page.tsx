@@ -32,7 +32,7 @@ const ContactUsFinal: NextPage = () => {
     console.log('Submitting form data:', formData);
 
     try {
-      const response = await fetch('/api/contactus', {
+      const response = await fetch('/api/PostContactUs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

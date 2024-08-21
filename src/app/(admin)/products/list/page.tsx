@@ -1,151 +1,60 @@
+// src/app/(admin)/products/list/page.tsx
 "use client";
-import React from 'react';
-import productimg from '@/assets/admin/productimg.png'
+import React, { useEffect, useState } from 'react';
+import ProductTable from '@/components/AdminProduct/ProductListComponent';
+import { SelectProduct } from '@/db/schema/product/products';
 
-import {
-    Table,
-    TableHead,
-    TableRow,
-    TableCell,
-    TableBody,
-} from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/system';
-import { useRouter } from 'next/navigation';
+const ProductPage: React.FC = () => {
+    const [products, setProducts] = useState<SelectProduct[]>([]);
+    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
-interface Product {
-    id: number;
-    image: string;
-    productName: string;
-    category: string;
-    availability: boolean;
-    vendor: string;
-}
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await fetch('/api/GetProductCard'); // Fetch all products
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch products: ${response.statusText}`);
+                }
+                const data: SelectProduct[] = await response.json();
+                setProducts(data);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Unknown error');
+            } finally {
+                setLoading(false);
+            }
+        };
 
-const products: Product[] = [
-    {
-        id: 1,
-        image: productimg.src,
-        productName: 'Nilgiri Hair Oil',
-        category: 'Oil',
-        availability: true,
-        vendor: 'Hari Krishnan',
-    },
-    {
-        id: 2,
-        image: productimg.src,
-        productName: 'Nilgiri Hair Oil',
-        category: 'Oil',
-        availability: true,
-        vendor: 'Hari Krishnan',
-    }, {
-        id: 3,
-        image: productimg.src,
-        productName: 'Nilgiri Hair Oil',
-        category: 'Oil',
-        availability: true,
-        vendor: 'Hari Krishnan',
-    }, {
-        id: 4,
-        image: productimg.src,
-        productName: 'Nilgiri Hair Oil',
-        category: 'Oil',
-        availability: true,
-        vendor: 'Hari Krishnan',
-    }, {
-        id: 5,
-        image: productimg.src,
-        productName: 'Nilgiri Hair Oil',
-        category: 'Oil',
-        availability: true,
-        vendor: 'Hari Krishnan',
-    },
+        fetchProducts();
+    }, []);
 
-];
+    const handleDelete = async (id: number) => {
+        try {
+            const response = await fetch(`/api/DeleteProduct/${id}`, {
+                method: 'DELETE',
+            });
 
-const ProductTable = () => {
-    const theme = useTheme();
-    const router = useRouter();
+            if (!response.ok) {
+                throw new Error('Failed to delete product');
+            }
 
-    const handleRowClick = (productId: number) => {
-        router.push(`/products/add/${productId}`);
-
+            // Update the UI after deletion
+            setProducts(products.filter(product => product.id !== id));
+        } catch (err) {
+            console.error(err);
+            alert('Failed to delete product');
+        }
     };
 
-    return (
-        <Box
-            sx={{
-                p: 2,
-                height: 'calc(100vh - 64px)',
-                overflow: 'auto',
-            }}
-        >
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Sl.No.</TableCell>
-                        <TableCell>Image</TableCell>
-                        <TableCell>Product Name</TableCell>
-                        <TableCell>Category</TableCell>
-                        <TableCell>Availability</TableCell>
-                        <TableCell>Vendor</TableCell>
-                        <TableCell>Action</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {products.map((product) => (
-                        <TableRow
-                            key={product.id}
-                            onClick={() => handleRowClick(product.id)}
-                            sx={{ cursor: 'pointer' }}
-                        >
-                            <TableCell>{product.id}</TableCell>
-                            <TableCell>
-                                <img
-                                    src={product.image}
-                                    alt={product.productName}
-                                    style={{ width: '50px', height: '50px' }}
-                                />
-                            </TableCell>
-                            <TableCell>{product.productName}</TableCell>
-                            <TableCell>{product.category}</TableCell>
-                            <TableCell>
-                                {product.availability ? 'Yes' : 'No'}
-                            </TableCell>
-                            <TableCell>{product.vendor}</TableCell>
-                            <TableCell>
-                                <Box display="flex" alignItems="center">
-                                    <ShoppingCartIcon
-                                        sx={{
-                                            mr: 1,
-                                            color: theme.palette.primary.main,
-                                            cursor: 'pointer',
-                                        }}
-                                    />
-                                    <EditIcon
-                                        sx={{
-                                            mr: 1,
-                                            color: theme.palette.primary.main,
-                                            cursor: 'pointer',
-                                        }}
-                                    />
-                                    <DeleteIcon
-                                        sx={{
-                                            color: theme.palette.error.main,
-                                            cursor: 'pointer',
-                                        }}
-                                    />
-                                </Box>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </Box>
-    );
+    if (loading) {
+        return <div className="text-center mt-8">Loading...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center text-red-500 mt-8">Error: {error}</div>;
+    }
+
+    return <ProductTable products={products} onDelete={handleDelete} />;
 };
 
-export default ProductTable;
+export default ProductPage;

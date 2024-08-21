@@ -44,7 +44,7 @@ const ProductForm = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/addproduct', {
+            const response = await fetch('/api/Postproduct', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
