@@ -5,7 +5,7 @@ import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import darsanaLogo from "@/assets/home/darsanaLogo.png";
+import Logo from "@/assets/darsanaLogo.png";
 
 interface NavLinkProps {
   href: string;
@@ -108,7 +108,7 @@ const Navbar = () => {
           className="flex items-center space-x-3 rtl:space-x-reverse"
           onClick={() => handleLinkClick("/")}
         >
-          <Image src={darsanaLogo} height={32} alt="Darsana Logo" />
+          <Image src={Logo} height={32} alt="Darsana Logo" />
         </NavLink>
 
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">

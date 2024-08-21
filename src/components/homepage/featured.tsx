@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import manorama from '@/assets/home/manorama.png';
-import mathrubhumi from '@/assets/home/mathrubhumi.png';
-import timesIndia from '@/assets/home/timesIndia.png';
-import timesNow from '@/assets/home/timesNow.png';
+import manorama from '@/assets/home/featured/manorama.png';
+import mathrubhumi from '@/assets/home/featured/mathrubhumi.png';
+import timesIndia from '@/assets/home/featured/timesIndia.png';
+import timesNow from '@/assets/home/featured/timesnow.png';
 
 const Featured: React.FC = () => {
     const [currentIndex, setCurrentIndex] = useState(0);

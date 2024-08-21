@@ -3,17 +3,17 @@ import "../../globals.css";
 import React, { useState, useEffect } from 'react';
 import HeroCarousel from '@/components/homepage/Hero';
 import EventCarousel from "@/components/homepage/event";
-import image17 from '@/assets/home/image17.png';
-import bijuschreiyanhomeheroimage from '@/assets/home/bijuschreiyanhomeheroimage.png';
-import darsanaCommunityEventProgram from '@/assets/home/darsanaCommunityEventProgram.png';
+import image17 from '@/assets/scholarship/image 17.png';
+import bijuschreiyanhomeheroimage from '@/assets/home/heroimage/bijuschreiyanhomeheroimage.png';
+import darsanaCommunityEventProgram from '@/assets/home/heroimage/darsanaCommunityEventProgram.png';
 import DarsanaSection from '@/components/homepage/DarsanaSection';
-import programLogo from '@/assets/home/programLogo.svg';
-import galleryLogo from '@/assets/home/galaryLogo.png';
-import conversationLogo from '@/assets/home/conversationLogo.svg';
+import programLogo from '@/assets/home/section/programLogo.svg';
+import galleryLogo from '@/assets/home/section/galaryLogo.png';
+import conversationLogo from '@/assets/home/section/conversationLogo.svg';
 import ProductHighlight from '@/components/homepage/product';
-import producthome1 from '@/assets/home/producthome1.png';
-import producthome2flower from '@/assets/home/producthome2flower.png';
-import productimagehomeplant3 from '@/assets/home/productimagehomeplant3.png';
+import producthome1 from '@/assets/home/product/producthome1.png';
+import producthome2flower from '@/assets/home/product/producthome2flower.png';
+import productimagehomeplant3 from '@/assets/home/product/productimagehomeplant3.png';
 import Featured from "@/components/homepage/featured";
 
 const slideData = [
@@ -21,18 +21,22 @@ const slideData = [
         imageSrc: image17,
         title: 'Biju Cherian Scholarship (BCS) program - Slide 1',
         subtitle: 'Subtitle for Slide 1',
+        link: '/scholarship-program-1', // Example link for Slide 1
     },
     {
         imageSrc: bijuschreiyanhomeheroimage,
-        title: 'Biju Cherian Scholarship (BCS) program - Slide 2',
+        title: 'House construction Event',
         subtitle: 'Subtitle for Slide 2',
+        link: '/scholarship-program-2', // Example link for Slide 2
     },
     {
         imageSrc: darsanaCommunityEventProgram,
         title: 'Biju Cherian Scholarship (BCS) program - Slide 3',
         subtitle: 'Subtitle for Slide 3',
+        link: '/scholarship-program-3', // Example link for Slide 3
     },
 ];
+
 
 interface EventItem {
     title: string;
