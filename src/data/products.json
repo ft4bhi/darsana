@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "title": "Men Long Sleeve",
+      "backgroundImage": "../assets/product/product page 02.png",
+      "dividerImage": "../assets/product/product page 02.png",
+      "productImage": "../assets/product/product page 02.png",
+      "link": "/product/1",
+      "description": "A stylish long sleeve for men."
+    },
+    {
+      "id": 2,
+      "title": "Women Short Sleeve",
+      "backgroundImage": "../assets/product/product page 02.png",
+      "dividerImage": "../assets/product/product page 02.png",
+      "productImage":"../assets/product/product page 02.png",
+      "link": "/product/2",
+      "description": "A stylish short sleeve for women."
+    }
+  ]
+  

@@ -1,0 +1,129 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    font-family: sans-serif;
+    background-color: #ffffff;
+  }
+  
+  ul.timeline {
+    display: grid;
+    grid-template-columns: 100px;
+    grid-template-rows: repeat(8, 150px);
+    align-items: center;
+    padding: 100px;
+    width: 100%;
+    height: 1500px;
+    list-style: none;
+    margin-right: 200px;
+    margin-left: 100px;
+    gap: 34px;
+  }
+  
+  li {
+    position: relative;
+    right: 10px;
+    width: 120px;
+    height: 120px;
+    margin: 0;
+    padding: 20px;
+    border-radius: 50%;
+    font-family: sans-serif;
+    font-weight: bold;
+    background: 
+      linear-gradient(#5f0eca, #5f0eca) content-box,
+      linear-gradient(white, white) padding-box, 
+      linear-gradient(var(--dir,-90deg),var(--per,#0000 45%), rgb(137, 116, 201) 0) border-box;
+    border: 25px solid #0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  li::after {
+    content: "";
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 65px;
+    position: absolute;
+    display: block;
+  }
+  
+  li:nth-child(even) {
+    align-self: flex-end;
+    right: auto;
+    left: 10px;
+    --dir: 90deg;
+    --per: #0000 45%;
+    top: 30px;
+  }
+  
+  li p, li time {
+    position: absolute;
+  }
+  
+  li p {
+    left: calc(100% + 360px);
+    font-size: 23px;
+    white-space: normal;
+    width: 300px;
+  }
+  
+  li:nth-child(even) p {
+    left: auto;
+    right: calc(100% + 360px);
+  }
+  
+  li time {
+    left: calc(100% + 120px);
+    font-weight: bold;
+    font-size: 24px;
+    top: 40px;
+    color: #5f0eca;
+  }
+  
+  li:nth-child(even) time {
+    left: auto;
+    right: calc(100% + 120px);
+    top: 40px;
+  }
+  
+  li .horizontal-line {
+    position: absolute;
+    left: calc(100% + 130px);
+    transform: translateX(-50%);
+    top: 50%;
+    width: 320px;
+    height: 12px;
+    background-color: #5f0eca;
+  }
+  
+  li:nth-child(even) .horizontal-line {
+    left: auto;
+    right: calc(100% + 130px);
+    transform: translateX(50%);
+  }
+  
+  li .small-circle {
+    position: absolute;
+    left: calc(100% + 285px);
+    transform: translateX(-50%);
+    top: 54%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 7px solid #5f0eca;
+  }
+  
+  li:nth-child(even) .small-circle {
+    left: auto;
+    right: calc(100% + 305.5px);
+    transform: translateX(50%) translateY(-50%);
+  }
+  
