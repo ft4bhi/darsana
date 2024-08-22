@@ -97,5 +97,10 @@
       "commit-msg": "npx commitlint --edit $1"
     }
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "type": "module"
 }
