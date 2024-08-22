@@ -1,0 +1,41 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonar:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'  # Specify the Java version you need
+    
+    - name: Install SonarQube Scanner
+      run: |
+        mkdir -p $HOME/.sonar
+        wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip -O $HOME/.sonar/sonar-scanner.zip
+        unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar
+        echo "$HOME/.sonar/sonar-scanner-4.8.0.2856-linux/bin" >> $GITHUB_PATH
+    
+    - name: SonarQube Scan
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_URL: ${{ secrets.SONAR_URL }}
+      run: |
+        sonar-scanner \
+          -Dsonar.projectKey=my_project_key \
+          -Dsonar.sources=src \
+          -Dsonar.host.url=$SONAR_URL \
+          -Dsonar.login=$SONAR_TOKEN

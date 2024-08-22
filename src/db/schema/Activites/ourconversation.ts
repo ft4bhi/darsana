@@ -1,16 +1,23 @@
 import { sql } from '@vercel/postgres';
-import { 
-  serial, 
-  text, 
-  date, 
-  boolean, 
-  timestamp, 
-  pgTable ,
-  pgEnum
-
+import {
+  serial,
+  text,
+  date,
+  boolean,
+  timestamp,
+  pgTable,
+  pgEnum,
 } from 'drizzle-orm/pg-core';
 
-const chapterEnum = pgEnum('chapter', ['banglore', 'palkkad', 'uae', 'north america','calicut','oman','saudi']);
+const chapterEnum = pgEnum('chapter', [
+  'banglore',
+  'palkkad',
+  'uae',
+  'north america',
+  'calicut',
+  'oman',
+  'saudi',
+]);
 
 // Define the schema for the 'conversation_details' table
 export const conversationDetails = pgTable('conversation_details', {
@@ -20,10 +27,8 @@ export const conversationDetails = pgTable('conversation_details', {
   category: text('category'),
   chapter: text('chapter'),
   imageUrl: text('image_url').array(), // Use `.array()` if PgArray is problematic
-  isActive: boolean('is_active').default(true),
   isArchived: boolean('is_archived').default(false),
-  createdAt: timestamp('created_at').defaultNow(),
-  updatedAt: timestamp('updated_at').defaultNow(), // Default value for timestamp
+  // Default value for timestamp
 });
 
 // Note: `.check` constraints might not be directly supported by drizzle-orm.

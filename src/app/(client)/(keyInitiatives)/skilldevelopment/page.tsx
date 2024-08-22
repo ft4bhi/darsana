@@ -13,7 +13,7 @@ const SkillDevelopmentProgram: React.FC = () => {
 
       <div className="flex justify-center mb-8">
         <Image
-          src={skillDevelopmentProgram.src}
+          src={skillDevelopmentProgram}
           alt="Skill Development Program"
           width={600}
           height={400}
@@ -23,7 +23,12 @@ const SkillDevelopmentProgram: React.FC = () => {
 
       <div className="text-gray-700 leading-relaxed max-w-4xl mx-auto">
         <p className="mb-4">
-          As part of the initiatives to help students build rewarding careers, we decided to conduct a program for 45 deserving students to give them the skills they need and boost their self-confidence to face interviews. In 2008, we jointly launched this program with the college's placement cell, and the students responded positively. The skill development program has grown significantly over time.
+          As part of the initiatives to help students build rewarding careers,
+          we decided to conduct a program for 45 deserving students to give them
+          the skills they need and boost their self-confidence to face
+          interviews. In 2008, we jointly launched this program with the
+          college&apos;s placement cell, and the students responded positively.
+          The skill development program has grown significantly over time.
         </p>
 
         <div className="mb-4">
@@ -37,7 +42,8 @@ const SkillDevelopmentProgram: React.FC = () => {
         </div>
 
         <p>
-          Every year, we adapt the program based on the feedback from previous batches to ensure it meets the current industry standards.
+          Every year, we adapt the program based on the feedback from previous
+          batches to ensure it meets the current industry standards.
         </p>
       </div>
     </div>

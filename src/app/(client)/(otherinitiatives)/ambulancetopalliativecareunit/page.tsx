@@ -23,10 +23,15 @@ const PalliativeCarePage: React.FC = () => {
 
       <div className="text-gray-700 leading-relaxed max-w-4xl mx-auto">
         <p className="mb-4">
-          Darsana contributed an Ambulance for EMS Jana Sevana Kendram, a Palliative Care Society, formed at Palakkad, in 2013. The fund for the purchase of the ambulance was generated through generous contributions of Darsana members. The state-of-the-art ambulance was handed over to the society (EMSJSK) on 13th June 2013.
+          Darsana contributed an Ambulance for EMS Jana Sevana Kendram, a
+          Palliative Care Society, formed at Palakkad, in 2013. The fund for the
+          purchase of the ambulance was generated through generous contributions
+          of Darsana members. The state-of-the-art ambulance was handed over to
+          the society (EMSJSK) on 13th June 2013.
         </p>
         <p>
-          This initiative was widely appreciated as proof of Darsana's commitment to social causes.
+          This initiative was widely appreciated as proof of Darsana&quot;s
+          commitment to social causes.
         </p>
       </div>
     </div>
