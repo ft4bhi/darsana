@@ -14,7 +14,7 @@ type User = {
     activity: string;
 };
 
-// Sample data based on  the image
+// Sample data based on the image
 const users: User[] = [
     { id: 1, applicationNo: "220001", name: "Andrew Rajogithes", branch: "Computer Science", year: "III", selection: "Selected", type: "Fresh", status: "selected", activity: "3 days ago" },
     { id: 2, applicationNo: "220001", name: "Andrew Rajogithes", branch: "Computer Science", year: "III", selection: "Rejected", type: "Renewal", status: "selected", activity: "2 days ago" },
