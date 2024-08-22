@@ -18,14 +18,16 @@ import { SelectProduct } from '@/db/schema/product/products';
 
 interface ProductTableProps {
     products: SelectProduct[];
-    onDelete: (id: number) => void;  // Add this prop to handle delete action
+    onDelete: (id: number) => void;
+    onToggleVisibility: (id: number) => void;
+    onEdit: (id: number) => void; // Add this prop to handle edit action
 }
 
-const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete }) => {
+const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete, onToggleVisibility, onEdit }) => {
     const theme = useTheme();
     const router = useRouter();
 
-    const handleViewClick = (productId: number) => {
+    const handleRowClick = (productId: number) => {
         router.push(`/product/${productId}`);
     };
 
@@ -53,6 +55,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete }) => {
                         <TableRow
                             key={product.id}
                             sx={{ cursor: 'pointer' }}
+                            onClick={() => handleRowClick(product.id)}
                         >
                             <TableCell>{index + 1}</TableCell>
                             <TableCell>
@@ -75,7 +78,10 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete }) => {
                                             color: theme.palette.primary.main,
                                             cursor: 'pointer',
                                         }}
-                                        onClick={() => handleViewClick(product.id)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onToggleVisibility(product.id);
+                                        }}
                                     />
                                     <EditIcon
                                         sx={{
@@ -83,13 +89,20 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete }) => {
                                             color: theme.palette.primary.main,
                                             cursor: 'pointer',
                                         }}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onEdit(product.id); // Call onEdit when clicked
+                                        }}
                                     />
                                     <DeleteIcon
                                         sx={{
                                             color: theme.palette.error.main,
                                             cursor: 'pointer',
                                         }}
-                                        onClick={() => onDelete(product.id)}  // Trigger delete action
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onDelete(product.id);
+                                        }}
                                     />
                                 </Box>
                             </TableCell>

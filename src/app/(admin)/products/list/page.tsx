@@ -1,13 +1,14 @@
-// src/app/(admin)/products/list/page.tsx
 "use client";
 import React, { useEffect, useState } from 'react';
 import ProductTable from '@/components/AdminProduct/ProductListComponent';
 import { SelectProduct } from '@/db/schema/product/products';
+import { useRouter } from 'next/navigation'; // Import the useRouter hook
 
 const ProductPage: React.FC = () => {
     const [products, setProducts] = useState<SelectProduct[]>([]);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const router = useRouter(); // Initialize the router
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -46,6 +47,14 @@ const ProductPage: React.FC = () => {
         }
     };
 
+    const handleToggleVisibility = (id: number) => {
+        console.log(`Toggled visibility for product ID: ${id}`);
+    };
+
+    const handleEdit = (id: number) => {
+        router.push(`/products/edit/${id}`); // Navigate to the edit page
+    };
+
     if (loading) {
         return <div className="text-center mt-8">Loading...</div>;
     }
@@ -54,7 +63,14 @@ const ProductPage: React.FC = () => {
         return <div className="text-center text-red-500 mt-8">Error: {error}</div>;
     }
 
-    return <ProductTable products={products} onDelete={handleDelete} />;
+    return (
+        <ProductTable
+            products={products}
+            onDelete={handleDelete}
+            onToggleVisibility={handleToggleVisibility}
+            onEdit={handleEdit} // Pass handleEdit to ProductTable
+        />
+    );
 };
 
 export default ProductPage;
