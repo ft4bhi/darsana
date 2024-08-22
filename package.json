@@ -91,5 +91,11 @@
       "prettier --write"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "npx commitlint --edit $1"
+    }
+  },
   "type": "module"
 }
