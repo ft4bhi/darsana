@@ -1,4 +1,3 @@
-// src/components/AdminProduct/ProductListComponent.tsx
 "use client";
 import React from 'react';
 import {
@@ -11,6 +10,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { useTheme } from '@mui/material/styles';
 import { Box } from '@mui/system';
 import { useRouter } from 'next/navigation';
@@ -20,7 +20,7 @@ interface ProductTableProps {
     products: SelectProduct[];
     onDelete: (id: number) => void;
     onToggleVisibility: (id: number) => void;
-    onEdit: (id: number) => void; // Add this prop to handle edit action
+    onEdit: (id: number) => void;
 }
 
 const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete, onToggleVisibility, onEdit }) => {
@@ -47,6 +47,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete, onToggl
                         <TableCell>Product Name</TableCell>
                         <TableCell>Category</TableCell>
                         <TableCell>Vendor</TableCell>
+                        <TableCell>Visibility</TableCell>
                         <TableCell>Action</TableCell>
                     </TableRow>
                 </TableHead>
@@ -70,19 +71,34 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete, onToggl
                             <TableCell>{product.title}</TableCell>
                             <TableCell>{product.category}</TableCell>
                             <TableCell>{product.companyName}</TableCell>
+                            <TableCell>{product.isVisible ? 'Visible' : 'Hidden'}</TableCell>
                             <TableCell>
                                 <Box display="flex" alignItems="center">
-                                    <VisibilityIcon
-                                        sx={{
-                                            mr: 1,
-                                            color: theme.palette.primary.main,
-                                            cursor: 'pointer',
-                                        }}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            onToggleVisibility(product.id);
-                                        }}
-                                    />
+                                    {product.isVisible ? (
+                                        <VisibilityIcon
+                                            sx={{
+                                                mr: 1,
+                                                color: theme.palette.primary.main,
+                                                cursor: 'pointer',
+                                            }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onToggleVisibility(product.id);
+                                            }}
+                                        />
+                                    ) : (
+                                        <VisibilityOffIcon
+                                            sx={{
+                                                mr: 1,
+                                                color: theme.palette.grey[500],
+                                                cursor: 'pointer',
+                                            }}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onToggleVisibility(product.id);
+                                            }}
+                                        />
+                                    )}
                                     <EditIcon
                                         sx={{
                                             mr: 1,
@@ -91,7 +107,7 @@ const ProductTable: React.FC<ProductTableProps> = ({ products, onDelete, onToggl
                                         }}
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            onEdit(product.id); // Call onEdit when clicked
+                                            onEdit(product.id);
                                         }}
                                     />
                                     <DeleteIcon

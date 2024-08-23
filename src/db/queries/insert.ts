@@ -13,7 +13,7 @@ import { db } from '../index';
 import { ContactDetail_Table, InsertContactDetail } from '../schema/contactus';
 import { UpcomingEvents_Table, InsertUpcomingEvents } from '../schema/home/upcomingevent';
 import { products, InsertProduct } from '../schema/product/product';
-import { vendors, InsertVendor } from '../schema/product/vendor';
+
 
 // Function to insert a new contact detail into the database
 export async function createContactDetail(data: InsertContactDetail) {
@@ -47,12 +47,4 @@ export async function productDetail(data: InsertProduct) {
   }
 }
 
-export async function vendorDetail(data: InsertVendor) {
-  try {
-    await db.insert(vendors).values(data);
-    console.log('Contact detail inserted successfully.');
-  } catch (error) {
-    console.error('Error inserting contact detail:', error);
-    throw new Error('Failed to insert contact detail');
-  }
-}
+

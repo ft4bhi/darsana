@@ -1,5 +1,5 @@
 // src\db\schema\product\products.ts
-import { pgTable, serial, varchar, text, jsonb, integer } from 'drizzle-orm/pg-core';
+import { pgTable, serial, varchar, text, jsonb, boolean  } from 'drizzle-orm/pg-core';
 import { drizzle } from 'drizzle-orm/vercel-postgres';
 import { sql } from "@vercel/postgres";
 
@@ -17,6 +17,7 @@ export const products = pgTable('products', {
   city: varchar('city', { length: 100 }),
   state: varchar('state', { length: 100 }),
   country: varchar('country', { length: 100 }),
+  isVisible: boolean('is_visible').default(true),
 });
 
 // Export types for insert and select

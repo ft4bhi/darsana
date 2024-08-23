@@ -1,11 +1,12 @@
+//api/ProductApi/GetProductCard
+
 import { NextResponse } from 'next/server';
 import { ProductsDb, products } from '@/db/schema/product/product';
 import { testConnection } from '@/db';
-import { eq } from 'drizzle-orm';
 
 export async function GET(req: Request) {
     try {
-        console.log('API route hit for fetching visible products');
+        console.log('API route hit for fetching all products');
 
         // Test the database connection
         const isConnected = await testConnection();
@@ -15,20 +16,19 @@ export async function GET(req: Request) {
             throw new Error('Database connection failed');
         }
 
-        // Fetch only visible products ordered by ID
-        const visibleProducts = await ProductsDb.select()
+        // Fetch all products ordered by ID
+        const allProducts = await ProductsDb.select()
             .from(products)
-            .where(eq(products.isVisible, true))
-            .orderBy(products.id)
+            .orderBy(products.id) // Correctly order by ID in ascending order
             .execute();
 
-        console.log('Fetched visible products:', visibleProducts);
+        console.log('Fetched products:', allProducts);
 
-        return NextResponse.json(visibleProducts, { status: 200 });
+        return NextResponse.json(allProducts, { status: 200 });
     } catch (error) {
-        console.error('Detailed error in fetching visible products:', error);
+        console.error('Detailed error in fetching products:', error);
         return NextResponse.json({ 
-            error: 'Failed to fetch visible products', 
+            error: 'Failed to fetch products', 
             details: error instanceof Error ? error.message : 'Unknown error' 
         }, { status: 500 });
     }

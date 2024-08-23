@@ -3,11 +3,11 @@ import { ProductsDb, products } from '@/db/schema/product/product';
 import { testConnection } from '@/db';
 import { eq } from 'drizzle-orm';
 
-export async function PUT(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: Request, { params }: { params: { id: string } }) {
     try {
-        console.log('API route hit for toggling product visibility');
+        console.log('API route hit for fetching a single product by ID');
 
-        // Test the database connection
+        // Test the database connection (assuming testConnection is defined elsewhere in your project)
         const isConnected = await testConnection();
         console.log('Database connection test result:', isConnected);
 
@@ -21,33 +21,24 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
             return NextResponse.json({ error: 'Invalid product ID' }, { status: 400 });
         }
 
-        // Fetch the current product
-        const currentProduct = await ProductsDb.select()
+        // Fetch the product by ID using the Drizzle ORM `eq` method
+        const product = await ProductsDb.select()
             .from(products)
             .where(eq(products.id, productId))
-            .limit(1)
+            .limit(1) // Assuming the ID is unique, limit the result to one entry
             .execute();
 
-        if (currentProduct.length === 0) {
+        if (product.length === 0) {
             return NextResponse.json({ error: 'Product not found' }, { status: 404 });
         }
 
-        // Toggle the visibility
-        const newVisibility = !currentProduct[0].isVisible;
+        console.log('Fetched product:', product[0]);
 
-        // Update the product visibility
-        await ProductsDb.update(products)
-            .set({ isVisible: newVisibility })
-            .where(eq(products.id, productId))
-            .execute();
-
-        console.log(`Product visibility toggled. New visibility: ${newVisibility}`);
-
-        return NextResponse.json({ success: true, isVisible: newVisibility }, { status: 200 });
+        return NextResponse.json(product[0], { status: 200 });
     } catch (error) {
-        console.error('Detailed error in toggling product visibility:', error);
+        console.error('Detailed error in fetching the product:', error);
         return NextResponse.json({ 
-            error: 'Failed to toggle product visibility', 
+            error: 'Failed to fetch product', 
             details: error instanceof Error ? error.message : 'Unknown error' 
         }, { status: 500 });
     }

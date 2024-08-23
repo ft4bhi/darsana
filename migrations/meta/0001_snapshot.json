@@ -1,6 +1,6 @@
 {
-  "id": "6cf68b63-659c-4ec6-a8b2-df6d4f9b2f80",
-  "prevId": "03eb65de-7ff7-40fa-aa7d-70fa6d23971d",
+  "id": "2ad017e4-f6f1-4329-b8d0-e92bc3089aae",
+  "prevId": "e92c2782-92e6-43cc-99ce-f5e9273889ee",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -144,17 +144,11 @@
           "name": "title",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "description": {
           "name": "description",
           "type": "text",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "rfo_images": {
-          "name": "rfo_images",
-          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -162,55 +156,19 @@
           "name": "category",
           "type": "varchar(100)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "type_value_pairs": {
           "name": "type_value_pairs",
           "type": "jsonb",
           "primaryKey": false,
-          "notNull": true
-        },
-        "vendor_id": {
-          "name": "vendor_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {
-        "products_vendor_id_vendors_id_fk": {
-          "name": "products_vendor_id_vendors_id_fk",
-          "tableFrom": "products",
-          "tableTo": "vendors",
-          "columnsFrom": [
-            "vendor_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
-    },
-    "public.vendors": {
-      "name": "vendors",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "serial",
-          "primaryKey": true,
-          "notNull": true
+          "notNull": false
         },
         "first_name": {
           "name": "first_name",
           "type": "varchar(100)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "company_name": {
           "name": "company_name",
@@ -222,7 +180,7 @@
           "name": "email",
           "type": "varchar(255)",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "phone_number": {
           "name": "phone_number",
@@ -247,6 +205,13 @@
           "type": "varchar(100)",
           "primaryKey": false,
           "notNull": false
+        },
+        "is_visible": {
+          "name": "is_visible",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": true
         }
       },
       "indexes": {},
