@@ -1,3 +1,5 @@
+//src\app\(admin)\products\edit\[id]\page.tsx
+
 "use client";
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
@@ -12,7 +14,7 @@ const EditProductPage: React.FC = () => {
         title: '',
         description: '',
         category: '',
-        typeValuePairs: {} as Record<string, string>,
+        typeValuePairs: '',
         firstName: '',
         companyName: '',
         email: '',
@@ -39,8 +41,10 @@ const EditProductPage: React.FC = () => {
                     title: data.title ?? '',
                     description: data.description ?? '',
                     category: data.category ?? '',
-                    // Explicitly type-casting typeValuePairs as Record<string, string>
-                    typeValuePairs: data.typeValuePairs as Record<string, string>,
+                    // Convert typeValuePairs to string if it's not already
+                    typeValuePairs: typeof data.typeValuePairs === 'string'
+                        ? data.typeValuePairs
+                        : JSON.stringify(data.typeValuePairs ?? ''),
                     firstName: data.firstName ?? '',
                     companyName: data.companyName ?? '',
                     email: data.email ?? '',
@@ -60,15 +64,13 @@ const EditProductPage: React.FC = () => {
     }, [productId]);
 
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-
-        console.log('Form submitted with data:', formData); // Debugging: Log the form data
 
         try {
             const response = await fetch(`/api/UpdateProduct/`, {
@@ -79,17 +81,14 @@ const EditProductPage: React.FC = () => {
                 body: JSON.stringify({ id: parseInt(productId), ...formData }),
             });
 
-            console.log('Response status:', response.status); // Debugging: Log the response status
-
             if (!response.ok) {
                 throw new Error('Failed to update product');
             }
 
-            console.log('Product updated successfully'); // Debugging: Confirm the update was successful
-
-            router.push('/admin/products/list');
+            console.log('Product updated successfully');
+            router.push('/products/list');
         } catch (err) {
-            console.error('Error occurred:', err); // Debugging: Log the error
+            console.error('Error occurred:', err);
             alert('Failed to update product');
         }
     };
@@ -104,152 +103,151 @@ const EditProductPage: React.FC = () => {
     }
 
     return (
-        <div className="container mx-auto mt-8">
-            <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Input fields for formData */}
-                <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value={formData.title}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
 
-                <div>
-                    <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
-                    <textarea
-                        id="description"
-                        name="description"
-                        value={formData.description}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
+            <div>
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
 
-                <div>
-                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
-                    <input
-                        type="text"
-                        id="category"
-                        name="category"
-                        value={formData.category}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
+            <div>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+                <input
+                    type="text"
+                    id="category"
+                    name="category"
+                    value={formData.category}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
 
-                <div>
-                    <label htmlFor="typeValuePairs" className="block text-sm font-medium text-gray-700">Type Value Pairs (JSON)</label>
-                    <textarea
-                        id="typeValuePairs"
-                        name="typeValuePairs"
-                        value={JSON.stringify(formData.typeValuePairs)}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
+            <div>
+                <label htmlFor="typeValuePairs" className="block text-sm font-medium text-gray-700">Type Value Pairs (JSON string)</label>
+                <textarea
+                    id="typeValuePairs"
+                    name="typeValuePairs"
+                    value={formData.typeValuePairs}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+                <input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">Company Name</label>
+                <input
+                    type="text"
+                    id="companyName"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="state" className="block text-sm font-medium text-gray-700">State</label>
+                <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
+
+            <div>
+                <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
+                <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+                />
+            </div>
 
 
-                <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
-                    <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={formData.firstName}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
 
-                <div>
-                    <label htmlFor="companyName" className="block text-sm font-medium text-gray-700">Company Name</label>
-                    <input
-                        type="text"
-                        id="companyName"
-                        name="companyName"
-                        value={formData.companyName}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        required
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
-                    <input
-                        type="tel"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        value={formData.phoneNumber}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
-                    <input
-                        type="text"
-                        id="city"
-                        name="city"
-                        value={formData.city}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="state" className="block text-sm font-medium text-gray-700">State</label>
-                    <input
-                        type="text"
-                        id="state"
-                        name="state"
-                        value={formData.state}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
-
-                <div>
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
-                    <input
-                        type="text"
-                        id="country"
-                        name="country"
-                        value={formData.country}
-                        onChange={handleInputChange}
-                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-                    />
-                </div>
-                <div>
-                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
-                        Save Changes
-                    </button>
-                </div>
-            </form>
-        </div>
+            <button
+                type="submit"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+            >
+                Submit
+            </button>
+        </form>
     );
 };
 
