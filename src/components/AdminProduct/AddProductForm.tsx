@@ -30,6 +30,7 @@ const ProductForm = () => {
         state: '',
         country: '',
         vendorId: 0,
+
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -44,7 +45,7 @@ const ProductForm = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/Postproduct', {
+            const response = await fetch('/api/PostProductData/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
