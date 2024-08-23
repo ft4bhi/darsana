@@ -12,6 +12,7 @@ export * from './home/upcomingevent';
 // export * from './Activites/Program/program_review';
 
 export * from './product/product';
+export * from './product/Image';
 // export * from './product/productcategory';
 // export * from './product/productdetail';
 // export * from './product/productdisplay';
