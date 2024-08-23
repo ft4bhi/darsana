@@ -53,7 +53,7 @@ const HomePage: React.FC = () => {
     useEffect(() => {
         const fetchEvents = async () => {
             try {
-                const response = await fetch('/api/upComingEvent');
+                const response = await fetch('/api/HomeApi/GetupComingEvent');
                 if (!response.ok) {
                     throw new Error(`Error: ${response.statusText}`);
                 }

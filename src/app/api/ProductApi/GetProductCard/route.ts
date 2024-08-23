@@ -1,7 +1,7 @@
 //api/GetProductCard
 
 import { NextResponse } from 'next/server';
-import { ProductsDb, products } from '@/db/schema/product/products';
+import { ProductsDb, products } from '@/db/schema/product/product';
 import { testConnection } from '@/db';
 
 export async function GET(req: Request) {

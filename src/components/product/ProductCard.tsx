@@ -1,73 +1,34 @@
-// // src\components\product\ProductCard.tsx
-// "client";
-// import React from 'react';
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import { products, Product as ProductType } from '@/components/product/data/ProductData';
-
-// interface ProductCardProps {
-//     product: ProductType;
-// }
-
-// const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-//     return (
-//         <Link href={`/product/${product.link}`} className="block border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
-//             <div className="relative w-full h-32">
-//                 <Image
-//                     src={product.imageUrl}
-//                     alt={product.title}
-//                     layout="fill"
-//                     objectFit="cover"
-//                     className="absolute inset-0"
-//                 />
-//             </div>
-//             <div className="p-4 bg-white flex flex-col justify-between h-full">
-//                 <div>
-//                     <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
-//                     <p className="text-gray-700 mb-2">{product.description}</p>
-//                 </div>
-//                 <div className="relative">
-//                     <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-white via-transparent"></div>
-//                 </div>
-//             </div>
-//         </Link>
-//     );
-// };
-
-// export default ProductCard;
-
-"use client";
 import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Product as ProductType } from '@/components/product/data/ProductData';
+import { useRouter } from 'next/navigation'; // Correct import for app directory
+import { SelectProduct } from '@/db/schema/product/product';
 
 interface ProductCardProps {
-    product: ProductType;
+    product: SelectProduct;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push(`/product/${product.id}`);
+    };
+
     return (
-        <Link href={`/product/${product.link}`} className="block border rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
-            <div className="relative w-full h-32">
-                <Image
-                    src={product.imageUrl}
-                    alt={product.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="absolute inset-0"
-                />
+        <div
+            onClick={handleClick}
+            className="border rounded-lg shadow-sm bg-white overflow-hidden flex flex-col cursor-pointer hover:shadow-md transition-shadow"
+        >
+            {/* Image placeholder */}
+            <div className="bg-gray-300 h-48 flex items-center justify-center">
+                <div className="text-gray-500 text-2xl">Image</div>
             </div>
-            <div className="p-4 bg-white flex flex-col justify-between h-full">
-                <div>
-                    <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
-                    <p className="text-gray-700 mb-2">{product.description}</p>
-                </div>
-                <div className="relative">
-                    <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-white via-transparent"></div>
-                </div>
+
+            {/* Product information */}
+            <div className="p-4 flex-grow">
+                <h2 className="text-lg font-semibold mb-1">{product.title}</h2>
+                <p className="text-gray-600 text-sm">{product.description}</p>
             </div>
-        </Link>
+        </div>
     );
 };
 

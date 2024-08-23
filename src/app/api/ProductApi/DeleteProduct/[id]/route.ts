@@ -1,6 +1,6 @@
 // src/app/api/DeleteProduct/[id]/route.ts
 import { NextResponse } from 'next/server';
-import { ProductsDb, products } from '@/db/schema/product/products';
+import { ProductsDb, products } from '@/db/schema/product/product';
 import { eq } from 'drizzle-orm';
 
 export async function DELETE(req: Request, { params }: { params: { id: string } }) {

@@ -15,7 +15,7 @@ export * from './product/product';
 // export * from './product/productcategory';
 // export * from './product/productdetail';
 // export * from './product/productdisplay';
-export * from './product/vendor';
+
 
 
 // export * from './scholarship/applicant';

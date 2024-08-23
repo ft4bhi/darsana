@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import ProductTable from '@/components/AdminProduct/ProductListComponent';
-import { SelectProduct } from '@/db/schema/product/products';
+import ProductTable from '@/components/AdminProduct/productMainComponent';
+import { SelectProduct } from '@/db/schema/product/product';
 import { useRouter } from 'next/navigation'; // Import the useRouter hook
 
 const ProductPage: React.FC = () => {
@@ -13,7 +13,7 @@ const ProductPage: React.FC = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('/api/GetProductCard'); // Fetch all products
+                const response = await fetch('/api/ProductApi/GetProductCard'); // Fetch all products
                 if (!response.ok) {
                     throw new Error(`Failed to fetch products: ${response.statusText}`);
                 }
@@ -31,7 +31,7 @@ const ProductPage: React.FC = () => {
 
     const handleDelete = async (id: number) => {
         try {
-            const response = await fetch(`/api/DeleteProduct/${id}`, {
+            const response = await fetch(`/api/ProductApi/DeleteProduct/${id}`, {
                 method: 'DELETE',
             });
 
