@@ -1,13 +1,12 @@
-// src/components/scholarship/client/EducationalDetails.tsx
-
 import React from 'react';
+import { YesNoField } from './YesNoField';
 import { InputField } from './InputField';
 
 export interface EducationalDetailsType {
     college: string;
     branch: string;
     semester: string;
-    hostelResident: string;
+    hostelResident: boolean;
     cgpa: string;
 }
 
@@ -16,7 +15,7 @@ export const EducationalDetails: React.FC<{
     setEducationalDetails: React.Dispatch<React.SetStateAction<EducationalDetailsType>>;
 }> = ({ educationalDetails, setEducationalDetails }) => {
 
-    const handleChange = (field: keyof EducationalDetailsType, value: string) => {
+    const handleChange = (field: keyof EducationalDetailsType, value: any) => {
         setEducationalDetails(prev => ({
             ...prev,
             [field]: value,
@@ -43,14 +42,14 @@ export const EducationalDetails: React.FC<{
                 value={educationalDetails.semester}
                 onChange={(e) => handleChange('semester', e.target.value)}
             />
-            <InputField
-                label="Hostel Resident Or Not"
+            <YesNoField
+                label="Hostel Resident Or Not (Yes/No)"
                 required
                 value={educationalDetails.hostelResident}
-                onChange={(e) => handleChange('hostelResident', e.target.value)}
+                onChange={(value) => handleChange('hostelResident', value)}
             />
             <InputField
-                label="CGPA"
+                label="CGPA-give number"
                 required
                 value={educationalDetails.cgpa}
                 onChange={(e) => handleChange('cgpa', e.target.value)}

@@ -1,5 +1,5 @@
 {
-  "id": "cb09f083-6972-4eee-a612-ff4e694d731c",
+  "id": "91df0192-1385-4552-b556-0c34f1520e85",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -279,9 +279,9 @@
         },
         "application_number": {
           "name": "application_number",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
         },
         "name": {
           "name": "name",

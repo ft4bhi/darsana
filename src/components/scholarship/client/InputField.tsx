@@ -6,6 +6,7 @@ export interface InputFieldProps {
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
+    type?: string; // Add type prop
 }
 
 export const InputField: React.FC<InputFieldProps> = ({
@@ -13,18 +14,19 @@ export const InputField: React.FC<InputFieldProps> = ({
     value,
     onChange,
     required = false,
+    type = 'text', // Default to 'text' if type is not provided
 }) => {
     const inputId = label.toLowerCase().replace(/\s+/g, '-');
 
     return (
         <div className="relative mb-4">
             <input
-                type="text"
+                type={type} // Use the type prop here
                 id={inputId}
                 className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 peer"
                 placeholder=" "
-                value={value}   // Pass the value prop to input
-                onChange={onChange}  // Pass the onChange handler to input
+                value={value}
+                onChange={onChange}
             />
             <label
                 htmlFor={inputId}

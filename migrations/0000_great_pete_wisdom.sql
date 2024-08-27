@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS "files" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "scholarship" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"application_number" integer,
+	"application_number" serial PRIMARY KEY NOT NULL,
 	"name" text,
 	"gender" text,
 	"category" text,

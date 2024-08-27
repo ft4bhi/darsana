@@ -10,7 +10,7 @@ export const ScholarshipDb = drizzle(sql);
 // Consolidated scholarship table definition
 export const Scholarship_Table = pgTable('scholarship', {
   id: serial('id').primaryKey(),
-  applicationNumber: integer('application_number'),
+  applicationNumber: serial('application_number').primaryKey(),
   name: text('name'),
   gender: text('gender'),
   category: text('category'),

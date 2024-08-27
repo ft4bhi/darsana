@@ -41,11 +41,13 @@ export const PersonalDetails: React.FC<{
                 onChange={(e) => handleChange('name', e.target.value)}
             />
             <InputField
-                label="DOB(DD-MM-YYYY)"
+                label="DOB"
+                type="date"
                 required
                 value={personalDetails.dob}
                 onChange={(e) => handleChange('dob', e.target.value)}
             />
+
             <div className="col-span-1 flex items-center">
                 <div className="flex items-center space-x-4">
                     <span className="text-gray-700">Gender:</span>
@@ -107,7 +109,7 @@ export const PersonalDetails: React.FC<{
                 onChange={(e) => handleChange('motherPhone', e.target.value)}
             />
             <InputField
-                label="Income"
+                label="Income-give number"
                 required
                 value={personalDetails.income}
                 onChange={(e) => handleChange('income', e.target.value)}
