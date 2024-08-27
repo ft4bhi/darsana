@@ -41,9 +41,9 @@ const ScholarshipPage: React.FC = () => {
                         <th className="py-2 px-4 border-b">Application No.</th>
                         <th className="py-2 px-4 border-b">Name</th>
                         <th className="py-2 px-4 border-b">Branch</th>
-                        {/* <th className="py-2 px-4 border-b">Year</th> */}
+                        <th className="py-2 px-4 border-b">Year</th>
                         <th className="py-2 px-4 border-b">Semester</th>
-                        {/* <th className="py-2 px-4 border-b">Type</th> */}
+                        <th className="py-2 px-4 border-b">Type</th>
                         <th className="py-2 px-4 border-b">Status</th>
                         <th className="py-2 px-4 border-b">Activity</th>
                     </tr>
@@ -54,9 +54,9 @@ const ScholarshipPage: React.FC = () => {
                             <td className="py-2 px-4 border-b">{scholarship.applicationNumber}</td>
                             <td className="py-2 px-4 border-b">{scholarship.name}</td>
                             <td className="py-2 px-4 border-b">{scholarship.branch}</td>
-                            {/* <td className="py-2 px-4 border-b">Add year if available</td> */}
+                            <td className="py-2 px-4 border-b">Add year if available</td>
                             <td className="py-2 px-4 border-b">{scholarship.semester}</td>
-                            {/* <td className="py-2 px-4 border-b">Add type if available</td> */}
+                            <td className="py-2 px-4 border-b">Add type if available</td>
                             <td className="py-2 px-4 border-b">{scholarship.status}</td>
                             <td className="py-2 px-4 border-b">
                                 <button className="bg-blue-500 text-white px-2 py-1 rounded">

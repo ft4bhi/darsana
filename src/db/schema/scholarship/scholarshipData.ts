@@ -39,6 +39,7 @@ export const Scholarship_Table = pgTable('scholarship', {
   semester: text('semester'),
   hostelResident: boolean('hostel_resident'),
   cgpa: decimal('cgpa', { precision: 3, scale: 2 }),
+  year: integer('year'),
   status: text('status'),
 });
 
