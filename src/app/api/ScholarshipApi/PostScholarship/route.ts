@@ -1,7 +1,6 @@
-// src/app/api/ScholarshipApi/PostScholarship/route.ts
-
 import { NextRequest, NextResponse } from 'next/server';
 import { ScholarshipDb, Scholarship_Table, InsertScholarship } from '@/db/schema/scholarship/scholarshipData';
+import { sql } from "@vercel/postgres";
 
 export async function POST(req: NextRequest) {
   try {
@@ -40,7 +39,16 @@ export async function POST(req: NextRequest) {
       throw new Error('Invalid date format for dateOfBirth');
     }
 
+    // Generate the next application number
+    const result = await sql`
+      SELECT COALESCE(MAX(application_number), 999999999) + 1 AS next_application_number
+      FROM scholarship
+      WHERE application_number >= 100000000
+    `;
+    const nextApplicationNumber = result.rows[0].next_application_number;
+
     const scholarshipData: InsertScholarship = {
+      applicationNumber: nextApplicationNumber,
       name: personalDetails.name,
       gender: personalDetails.gender,
       category: personalDetails.category,
@@ -77,13 +85,15 @@ export async function POST(req: NextRequest) {
     console.log('Prepared Scholarship Data:', scholarshipData);
 
     // Insert data into the database
-    const result = await ScholarshipDb.insert(Scholarship_Table)
-      .values(scholarshipData)
-      .returning();
+    const insertResult = await ScholarshipDb.insert(Scholarship_Table).values(scholarshipData);
 
-    console.log('Database Insert Result:', result);
+    console.log('Database Insert Result:', insertResult);
 
-    return NextResponse.json({ message: 'Scholarship data added successfully', result });
+    return NextResponse.json({ 
+      message: 'Scholarship data added successfully', 
+      result: insertResult,
+      applicationNumber: nextApplicationNumber
+    });
 
   } catch (error) {
     console.error('Error posting scholarship data:', error.message);

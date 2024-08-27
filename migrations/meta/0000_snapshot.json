@@ -1,5 +1,5 @@
 {
-  "id": "91df0192-1385-4552-b556-0c34f1520e85",
+  "id": "13fbd789-ad7d-4b71-94ba-8a7129fd2e1c",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -280,7 +280,7 @@
         "application_number": {
           "name": "application_number",
           "type": "serial",
-          "primaryKey": true,
+          "primaryKey": false,
           "notNull": true
         },
         "name": {
@@ -468,32 +468,20 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
-        },
-        "remarks": {
-          "name": "remarks",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": false,
-          "default": "now()"
         }
       },
       "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {}
+      "uniqueConstraints": {
+        "scholarship_application_number_unique": {
+          "name": "scholarship_application_number_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "application_number"
+          ]
+        }
+      }
     }
   },
   "enums": {},

@@ -1,3 +1,5 @@
+// src\components\scholarship\client\applyComponent.tsx
+
 "use client";
 import React, { useState } from 'react';
 import { Tab } from './Tab';
@@ -6,6 +8,7 @@ import { ContactDetails, ContactDetailsType } from './ContactDetails';
 import { EducationalDetails, EducationalDetailsType } from './EducationalDetails';
 import { BankDetails, BankDetailsType } from './BankDetails';
 import { Documentation, FilesType } from './Documentation';
+
 
 const ApplyForm: React.FC = () => {
     const [activeTab, setActiveTab] = useState('personal');
@@ -44,7 +47,7 @@ const ApplyForm: React.FC = () => {
         college: '',
         branch: '',
         semester: '',
-        hostelResident: '',
+        hostelResident: true,
         cgpa: '',
     });
 

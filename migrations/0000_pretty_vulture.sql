@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS "files" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "scholarship" (
 	"id" serial PRIMARY KEY NOT NULL,
-	"application_number" serial PRIMARY KEY NOT NULL,
+	"application_number" serial NOT NULL,
 	"name" text,
 	"gender" text,
 	"category" text,
@@ -80,7 +80,5 @@ CREATE TABLE IF NOT EXISTS "scholarship" (
 	"hostel_resident" boolean,
 	"cgpa" numeric(3, 2),
 	"status" text,
-	"remarks" text,
-	"created_at" timestamp DEFAULT now(),
-	"updated_at" timestamp DEFAULT now()
+	CONSTRAINT "scholarship_application_number_unique" UNIQUE("application_number")
 );
