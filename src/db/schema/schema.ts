@@ -19,7 +19,7 @@ export * from './product/Image';
 
 
 
-// export * from './scholarship/applicant';
+export * from './scholarship/scholarshipData';
 // export * from './scholarship/bank';
 // export * from './scholarship/contact';
 // export * from './scholarship/document';

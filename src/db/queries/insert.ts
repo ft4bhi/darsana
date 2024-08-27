@@ -13,6 +13,7 @@ import { db } from '../index';
 import { ContactDetail_Table, InsertContactDetail } from '../schema/contactus';
 import { UpcomingEvents_Table, InsertUpcomingEvents } from '../schema/home/upcomingevent';
 import { products, InsertProduct } from '../schema/product/product';
+import { Scholarship_Table,InsertScholarship } from '../schema/scholarship/scholarshipData';
 
 
 // Function to insert a new contact detail into the database
@@ -40,6 +41,16 @@ export async function createUpcomingEvent(data: InsertUpcomingEvents) {
 export async function productDetail(data: InsertProduct) {
   try {
     await db.insert(products).values(data);
+    console.log('Contact detail inserted successfully.');
+  } catch (error) {
+    console.error('Error inserting contact detail:', error);
+    throw new Error('Failed to insert contact detail');
+  }
+}
+
+export async function scholarship(data: InsertScholarship) {
+  try {
+    await db.insert(Scholarship_Table).values(data);
     console.log('Contact detail inserted successfully.');
   } catch (error) {
     console.error('Error inserting contact detail:', error);
