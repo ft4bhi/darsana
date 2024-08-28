@@ -5,15 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1723994310368,
-      "tag": "0000_closed_nocturne",
+      "when": 1724775690570,
+      "tag": "0000_pretty_vulture",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1723994455121,
-      "tag": "0001_natural_redwing",
+      "when": 1724778202522,
+      "tag": "0001_parallel_firebird",
       "breakpoints": true
     }
   ]

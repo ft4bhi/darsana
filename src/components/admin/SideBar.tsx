@@ -38,7 +38,7 @@ const Sidebar: React.FC = () => {
                     </div>
                 </div>
 
-               
+
 
                 <div className="space-y-2 mt-6">
                     {/* Dashboard Button */}
@@ -139,7 +139,7 @@ const Sidebar: React.FC = () => {
                     )}
 
                     {/* Scholarships Button */}
-                    <Link href="/scholarships" passHref>
+                    <Link href="/Scholarships" passHref>
                         <button
                             className={`flex items-center w-full p-3 transition duration-300 ${pathname === '/scholarships'
                                 ? 'bg-purple-100 text-purple-600 hover:bg-purple-200'
@@ -161,7 +161,7 @@ const Sidebar: React.FC = () => {
                             Upcoming
                         </button>
                     </Link>
-                    
+
                     {/* hero image Button */}
                     <Link href="/-hero-image" passHref>
                         <button

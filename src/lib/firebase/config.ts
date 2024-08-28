@@ -1,7 +1,6 @@
-// libs/firebase/config.ts
-
 import { getAuth } from 'firebase/auth';
 import { initializeApp, getApps } from 'firebase/app';
+import { getStorage } from 'firebase/storage'; // Import getStorage
 
 // Load .env variables
 const firebaseConfig = {
@@ -17,4 +16,5 @@ const firebaseConfig = {
 const firebaseApp =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
+export const storage = getStorage(firebaseApp); // Use firebaseApp instead of app
 export const firebaseAuth = getAuth(firebaseApp);
