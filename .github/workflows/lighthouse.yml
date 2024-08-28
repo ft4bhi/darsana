@@ -1,28 +1,20 @@
-name: End-to-End Tests
-
+name: CI
 on: [push]
-
 jobs:
   lhci:
     name: Lighthouse
     runs-on: ubuntu-latest
-
     steps:
-      - name: Check out code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js 12.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 12.x
-
-      - name: Install dependencies and build
+          node-version: 16.x
+      - name: npm install, build
         run: |
           npm install
           npm run build
-
-      - name: Test site with Lighthouse CI
+      - name: run Lighthouse CI
         run: |
-          npm run generate # Or whatever will build the project
-          npm install -g @lhci/cli@0.7.x
+          npm install -g @lhci/cli@0.14.x
           lhci autorun
